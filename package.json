@@ -1,5 +1,5 @@
 {
-  "name": "ExecXI",
+  "name": "execxi",
   "description": "Node extension that asynchronously executes shell commands",
   "version": "1.0",
   "keywords": [
@@ -22,7 +22,12 @@
       "type": "git",
       "url": "git://github.com/aponxi/npm-execxi.git"
     }
-  ],
+  ], 
+  "scripts" : {
+      "preinstall" : "node-gyp configure build", 
+      "preuninstall" : "rm -rf build/*"
+    },
+  "main" : "build/Release/execxi.node",
   "licenses": [
     {
       "name": "MIT",
