@@ -1,14 +1,14 @@
 {
   "name": "execxi",
-  "description": "Node extension that asynchronously executes shell commands",
-  "version": "1.0.1",
+  "description": "Node extension that synchronously executes multiple shell commands in given order and outputs results in real-time!",
+  "version": "1.0.2",
   "keywords": [
     "node",
     "shell",
     "execute",
     "commands",
     "terminal",
-    "asynchronous"
+    "synchronous"
   ],
   "maintainers": [
     {
