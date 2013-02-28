@@ -1,0 +1,37 @@
+{
+  "name": "execxi",
+  "description": "Node extension that asynchronously executes shell commands",
+  "version": "1.0",
+  "keywords": [
+    "node",
+    "shell",
+    "execute",
+    "commands",
+    "terminal",
+    "asynchronous"
+  ],
+  "maintainers": [
+    {
+      "name": "Logan Howlett",
+      "email": "info@weaponxi.com",
+      "web": "http://www.weaponxi.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git://github.com/aponxi/npm-execxi.git"
+    }
+  ], 
+  "scripts" : {
+      "preinstall" : "node-gyp configure build", 
+      "preuninstall" : "rm -rf build/*"
+    },
+  "main" : "build/Release/execxi.node",
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "http://aponxi.mit-license.org/"
+    }
+  ]
+}
