@@ -68,7 +68,7 @@ Handle<Value> executeArray(const Arguments& args) {
       result_array->Set(cv::CastToJS("failed"), cv::CastToJS(0));
       result_array->Set(cv::CastToJS("passed"), cv::CastToJS(0));
       result_array->Set(cv::CastToJS(0), True());
-
+    std::stringstream  summary, passed_ones, failed_ones;
     for (int i = 0; i < array->Length(); i++) {
 
       // get the corresponding array element
@@ -129,6 +129,9 @@ Handle<Value> executeArray(const Arguments& args) {
         {
           // our command was exited with 0, so lets add that to passed 
           result_array->Set(cv::CastToJS("passed"), cv::CastToJS(_passed+1));
+          // storing passed cmd to sstream
+          passed_ones 
+          << "#" << i+1 << " ";
           //debug after cmd is run
           exit_msg 
             << std::endl
@@ -147,6 +150,10 @@ Handle<Value> executeArray(const Arguments& args) {
           result_array->Set(cv::CastToJS("failed"), cv::CastToJS(_failed+1));
           //setting [0] to false since we have failed at least once
           result_array->Set(cv::CastToJS(0), False());
+
+          // storing failed cmd to sstream
+          failed_ones 
+          << "#" << i+1 << " ";
 
           // if the chained option is true...
           if (Chained)
@@ -188,6 +195,61 @@ Handle<Value> executeArray(const Arguments& args) {
       
        
     }
+  // finally we have this many passed (exited with 0)
+  int _passed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("passed")));
+  // finally we have this many failed (exited with not 0)
+  int _failed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("failed")));
+  // finally we have this many commands run 
+  int _ran = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("ran")));
+  summary
+    << std::endl
+    << std::endl
+    << CYAN << BOLD
+    << LINE
+    << std::endl
+    << LINE
+    << std::endl
+    << "-               SUMMARY                -"
+    << std::endl
+    << LINE
+
+    << RESET << CYAN
+    << std::endl
+
+    << std::endl
+    << "  " << BLET << " Ran " << _ran << "/" << max << " commands."
+    << std::endl << std::endl
+    << LINE
+    << std::endl
+
+    << std::endl
+    << GREEN
+    << "  " << TICK << " Passed: " << _passed << " commands:"
+    << std::endl
+    << "  " << TICK << " " << passed_ones.str()
+    << std::endl << std::endl
+    << LINE
+    << std::endl
+
+    << std::endl
+    << RED
+    << "  " << CRSS << " Failed: " << _failed << " commands:"
+    << std::endl
+    << "  " << CRSS << " " << failed_ones.str()
+    << std::endl << std::endl
+    << LINE
+    << std::endl
+
+    << CYAN << BOLD
+    << std::endl
+    << LINE
+    << std::endl
+    << LINE
+    << std::endl
+
+    << RESET
+    << std::endl;
+  std::cout << summary.str();
   return scope.Close(result_array);
 }
  
