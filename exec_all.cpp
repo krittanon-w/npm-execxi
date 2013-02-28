@@ -196,4 +196,4 @@ void init(Handle<Object> target) {
     target->Set(String::NewSymbol("executeArray"),
         FunctionTemplate::New(executeArray)->GetFunction());
 }
-NODE_MODULE(execXI, init)
+NODE_MODULE(execxi, init)
