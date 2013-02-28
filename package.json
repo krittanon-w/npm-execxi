@@ -1,11 +1,14 @@
 {
-  "name": "Async_Exec",
+  "name": "ExecXI",
   "description": "Node extension that asynchronously executes shell commands",
   "version": "1.0",
   "keywords": [
     "node",
-    "c++",
-    "project"
+    "shell",
+    "execute",
+    "commands",
+    "terminal",
+    "asynchronous"
   ],
   "maintainers": [
     {
@@ -17,7 +20,7 @@
   "repositories": [
     {
       "type": "git",
-      "url": "git://github.com/aponxi/wxi-playground.git"
+      "url": "git://github.com/aponxi/npm-execxi.git"
     }
   ],
   "licenses": [
