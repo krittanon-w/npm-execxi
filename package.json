@@ -1,0 +1,29 @@
+{
+  "name": "Async_Exec",
+  "description": "Node extension that asynchronously executes shell commands",
+  "version": "1.0",
+  "keywords": [
+    "node",
+    "c++",
+    "project"
+  ],
+  "maintainers": [
+    {
+      "name": "Logan Howlett",
+      "email": "info@weaponxi.com",
+      "web": "http://www.weaponxi.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git://github.com/aponxi/wxi-playground.git"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "http://aponxi.mit-license.org/"
+    }
+  ]
+}
