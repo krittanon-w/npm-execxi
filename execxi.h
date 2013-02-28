@@ -32,7 +32,7 @@
 #include <stdio.h>
 #include <string>
 
-class execXI
+class ExecXI
 {
 
 public:

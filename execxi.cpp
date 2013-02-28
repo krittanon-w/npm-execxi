@@ -31,7 +31,7 @@
 using namespace std;
 
 
-int execXI::run(string command)
+int ExecXI::run(string command)
 {
 
 	FILE *in;

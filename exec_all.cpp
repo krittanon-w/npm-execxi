@@ -78,7 +78,7 @@ Handle<Value> executeArray(const Arguments& args) {
       std::string cmd = cv::CastFromJS<std::string>(element);
        
       // execxi class
-      execXI execxi;
+      ExecXI execxi;
 
       // we will store exit code here
       int exitcode;
@@ -196,4 +196,4 @@ void init(Handle<Object> target) {
     target->Set(String::NewSymbol("executeArray"),
         FunctionTemplate::New(executeArray)->GetFunction());
 }
-NODE_MODULE(exec_all, init)
+NODE_MODULE(execXI, init)
