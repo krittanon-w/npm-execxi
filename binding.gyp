@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "exec_all",
+      "target_name": "execxi",
       "sources": [ "execxi.cpp","exec_all.cpp" ]
     }
   ]
