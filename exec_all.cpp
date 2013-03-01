@@ -64,15 +64,6 @@ using namespace v8;
 #define UNDER "\033[4m"
 #define BOLD "\033[1m"
 
-std::string get_line(FILE* f) {
-    char c;
-    std::string out;
-    while((c=std::fgetc(f)!='\n' && c!=EOF)) {
-         out+=c;
-    }
-    out+='\n';
-    return out;
-}
 
 Handle<Value> executeArray(const Arguments& args) {
     HandleScope scope;
@@ -185,11 +176,11 @@ Handle<Value> executeArray(const Arguments& args) {
 
       while(fgets(buff, sizeof(buff), in)!=NULL){
         std::cout << buff;
+        cmd_output.str(std::string());
         cmd_output << buff;
       }
-      while(!std::feof(in)) {
-          std::cout << get_line(in) << "\n NEW LINE";
-      }
+      std::cout << "\n buffered output \n"<< cmd_output.str()
+      << "\n length: " << sizeof(cmd_output.str());
 
       exitcode = pclose(in);
       // Convert exit code from 16 bit
