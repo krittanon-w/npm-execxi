@@ -176,15 +176,15 @@ Handle<Value> executeArray(const Arguments& args) {
         std::cout << buff;
         cmd_output << buff;
       }
-      // char *line = NULL;
-      // size_t len = 0;
-      // ssize_t read;
-      // while ((read = getline(&line, &len, in)) != -1) {
-      //   printf("Retrieved line of length %zu :\n", read);
-      //   printf("%s", line);
-      // }
+      char *line = NULL;
+      size_t len = 0;
+      ssize_t read;
+      while ((read = getline(&line, &len, in)) != -1) {
+        printf("Retrieved line of length %zu :\n", read);
+        printf("%s", line);
+      }
 
-      // free(line);
+      free(line);
 
       exitcode = pclose(in);
       // Convert exit code from 16 bit
