@@ -180,7 +180,7 @@ Handle<Value> executeArray(const Arguments& args) {
         cmd_output << buff;
       }
       std::cout << "\n buffered output \n"<< cmd_output.str()
-      << "\n length: " << sizeof(cmd_output.str());
+      << "\n length: " << cmd_output.str().length();
 
       exitcode = pclose(in);
       // Convert exit code from 16 bit
