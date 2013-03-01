@@ -178,9 +178,12 @@ Handle<Value> executeArray(const Arguments& args) {
         std::cout << buff;
         cmd_output.str(std::string());
         cmd_output << buff;
+        //testing
+        std::cout << CYAN << "\n buffered output \n"<< cmd_output.str()
+      << "\n length: " << cmd_output.str().length() << "\n" << RESET;
       }
-      std::cout << "\n buffered output \n"<< cmd_output.str()
-      << "\n length: " << cmd_output.str().length();
+      // std::cout << "\n buffered output \n"<< cmd_output.str()
+      // << "\n length: " << cmd_output.str().length();
 
       exitcode = pclose(in);
       // Convert exit code from 16 bit
