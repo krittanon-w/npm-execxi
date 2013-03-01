@@ -38,10 +38,13 @@
 #include <v8.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <cvv8/convert.hpp>
+
+#include <iostream>
 #include <string>
 #include <sstream>
-#include "./execxi.h"
+// #include "./execxi.h"
 namespace cv = cvv8;
 using namespace v8;
  
@@ -114,13 +117,19 @@ Handle<Value> executeArray(const Arguments& args) {
       std::string cmd = cv::CastFromJS<std::string>(element);
        
       // execxi class
-      ExecXI execxi;
+      // ExecXI execxi;
 
       // we will store exit code here
       int exitcode;
 
       // for messages
-        std::stringstream current, running, exit_msg;
+      std::stringstream 
+        current, 
+        running, 
+        exit_msg, 
+        fatal_error;
+      // for output of the command
+      std::stringstream cmd_output;
 
         // current running command number
         // [ 1/10 ]
@@ -139,11 +148,45 @@ Handle<Value> executeArray(const Arguments& args) {
           << std::endl
           << std::endl;
 
+        // Fatal error message
+        fatal_error 
+          << std::endl
+          << RED
+          << CRSS << " "
+          << "Stopped at after running command #" << i+1 << ". Fatal Error when running the command."
+          << RESET
+          << std::endl
+          << std::endl;
+
       //debug before cmd is run
       std::cout << running.str();
 
       //Run the command
-      exitcode = execxi.run(cmd);
+      // exitcode = execxi.run(cmd);
+
+      FILE *in;
+      char buff[512];
+
+      if(!(in = popen(cmd.c_str(), "r"))){
+        // fatal error running command
+        std::cout << fatal_error.str();
+      }
+
+      while(fgets(buff, sizeof(buff), in)!=NULL){
+        std::cout << buff;
+        cmd_output << buff;
+      }
+      // char *line = NULL;
+      // size_t len = 0;
+      // ssize_t read;
+      // while ((read = getline(&line, &len, in)) != -1) {
+      //   printf("Retrieved line of length %zu :\n", read);
+      //   printf("%s", line);
+      // }
+
+      // free(line);
+
+      exitcode = pclose(in);
       // Convert exit code from 16 bit
       exitcode = exitcode/256;
 
