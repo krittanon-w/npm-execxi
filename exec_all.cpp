@@ -38,6 +38,7 @@
 #include <v8.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstdio>
 
 #include <cvv8/convert.hpp>
 
@@ -62,6 +63,16 @@ using namespace v8;
 #define LINE "----------------------------------------"
 #define UNDER "\033[4m"
 #define BOLD "\033[1m"
+
+std::string get_line(FILE* f) {
+    char c;
+    std::string out;
+    while((c=std::fgetc(f)!='\n' && c!=EOF)) {
+         out+=c;
+    }
+    out+='\n';
+    return out;
+}
 
 Handle<Value> executeArray(const Arguments& args) {
     HandleScope scope;
@@ -176,15 +187,9 @@ Handle<Value> executeArray(const Arguments& args) {
         std::cout << buff;
         cmd_output << buff;
       }
-      char *line = NULL;
-      size_t len = 0;
-      ssize_t read;
-      while ((read = getline(&line, &len, in)) != -1) {
-        printf("Retrieved line of length %zu :\n", read);
-        printf("%s", line);
+      while(!std::feof(in)) {
+          std::cout << get_line(in) << "\n NEW LINE";
       }
-
-      free(line);
 
       exitcode = pclose(in);
       // Convert exit code from 16 bit
