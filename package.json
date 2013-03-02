@@ -1,7 +1,7 @@
 {
   "name": "execxi",
   "description": "Node extension that synchronously executes multiple shell commands in given order and outputs results in real-time!",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "keywords": [
     "node",
     "shell",
@@ -24,8 +24,10 @@
     }
   ], 
   "scripts" : {
-      "preinstall" : "node-gyp configure build", 
-      "preuninstall" : "rm -rf build/*"
+      "preinstall" : "make", 
+      "preuninstall" : "make clean",
+      "test" : "make test",
+      "gentest" : "make gentest"
     },
   "main" : "build/Release/execxi.node",
   "licenses": [
