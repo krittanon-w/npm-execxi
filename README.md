@@ -97,6 +97,7 @@ execxi.executeArray(<Array> Commands[, <bool> Chained = true] )
     "passed": int // number of commands that have passed (exited with 0)
 ]
 ```
+One line of output is limited to the capabilities of a `char[512]` in C++.
 
 ## Example
 [Back To Top](#)
