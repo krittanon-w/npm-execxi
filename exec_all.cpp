@@ -173,6 +173,11 @@ Handle<Value> executeArray(const Arguments& args) {
         // fatal error running command
         std::cout << fatal_error.str();
       }
+      // for array keys
+      int line_n;
+      line_n =0;
+      // for storing outputs line by line
+      v8::Handle<v8::Array> output_array = v8::Array::New();
 
       while(fgets(buff, sizeof(buff), in)!=NULL){
         std::cout << buff;
@@ -194,7 +199,12 @@ Handle<Value> executeArray(const Arguments& args) {
         //   << CYAN << "\n buffered output \n'"<< str
         //   << "'\n length: " << cmd_output.str().length()
         //   << "/" << str.length() << "\n" << RESET;
+
+        // store output line by line here
+        output_array->Set(cv::CastToJS(line_n), cv::CastToJS(exitcode));
+        line_n++;
       }
+
       // std::cout << "\n buffered output \n"<< cmd_output.str()
       // << "\n length: " << cmd_output.str().length();
 
@@ -209,8 +219,13 @@ Handle<Value> executeArray(const Arguments& args) {
       //store result to array
         // ran this number of commands
         result_array->Set(cv::CastToJS("ran"), cv::CastToJS(i+1));
-        // exit code of this command is this
-        result_array->Set(cv::CastToJS(i+1), cv::CastToJS(exitcode));
+        // this command's exit code and output
+          v8::Handle<v8::Array> this_command = v8::Array::New();
+          this_command->Set(cv::CastToJS("output"), output_array);
+          this_command->Set(cv::CastToJS("exit_code"), cv::CastToJS(exitcode));
+
+        // store results
+        result_array->Set(cv::CastToJS(i+1), this_command);
         // currently we have this many passed (exited with 0)
         int _passed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("passed")));
         // currently we have this many failed (exited with not 0)
