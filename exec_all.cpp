@@ -201,7 +201,7 @@ Handle<Value> executeArray(const Arguments& args) {
         //   << "/" << str.length() << "\n" << RESET;
 
         // store output line by line here
-        output_array->Set(cv::CastToJS(line_n), cv::CastToJS(exitcode));
+        output_array->Set(cv::CastToJS(line_n), cv::CastToJS(str));
         line_n++;
       }
 
