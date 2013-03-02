@@ -184,31 +184,16 @@ Handle<Value> executeArray(const Arguments& args) {
         std::string str;
         str = cmd_output.str();
 
-        // //test
-        // //last line
-        // std::cout << "\nlast line: \n'"
-        // << str[str.length()]
-        // << "'";
-        
-        // std::cout << "\nlast line -1: \n'"
-        // << str[str.length() -1 ]
-        // << "'";
-
-        // std::cout << "\nlast line -2: \n'"
-        // << str[str.length() -2 ]
-        // << "'";
-
-
-
+        // erase the last char if its a new line
         if (str[str.length()-1] == '\n')
         {
           str.erase(str.length()-1);
         }
         //testing
-        std::cout 
-          << CYAN << "\n buffered output \n'"<< str
-          << "'\n length: " << cmd_output.str().length()
-          << "/" << str.length() << "\n" << RESET;
+        // std::cout 
+        //   << CYAN << "\n buffered output \n'"<< str
+        //   << "'\n length: " << cmd_output.str().length()
+        //   << "/" << str.length() << "\n" << RESET;
       }
       // std::cout << "\n buffered output \n"<< cmd_output.str()
       // << "\n length: " << cmd_output.str().length();
