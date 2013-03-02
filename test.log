@@ -13,24 +13,24 @@
       'tests' ],
     exit_code: 0 ],
   [ output: [ 'Works' ], exit_code: 0 ],
-  [ output: [ 'total 248',
+  [ output: [ 'total 252',
       'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
       '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
       '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
       '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
-      '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
       '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
       '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
       'drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests',
-      '-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp',
       'drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build',
-      '-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js',
-      '-rw-rw-r--  1 logan logan 23546 Mar  1 21:22 README.md',
       '-rw-rw-r--  1 logan logan   180 Mar  1 21:24 Makefile',
-      'drwxrwxr-x  8 logan logan  4096 Mar  1 21:24 .git',
-      '-rw-rw-r--  1 logan logan 20835 Mar  1 21:24 test.html',
-      '-rw-rw-r--  1 logan logan     0 Mar  1 21:24 test.log',
-      'drwxrwxr-x  5 logan logan  4096 Mar  1 21:24 .' ],
+      '-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 21:49 .',
+      '-rw-rw-r--  1 logan logan  1416 Mar  1 21:57 test.js',
+      '-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp',
+      '-rw-rw-r--  1 logan logan 24121 Mar  1 22:18 README.md',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 22:18 .git',
+      '-rw-rw-r--  1 logan logan 21123 Mar  1 22:18 test.html',
+      '-rw-rw-r--  1 logan logan     0 Mar  1 22:18 test.log' ],
     exit_code: 0 ],
   [ output: [ 'Exit 0' ], exit_code: 0 ],
   [ output: [ 'Exit 1' ], exit_code: 1 ],
@@ -71,24 +71,24 @@ Works
 [0;36m￭ [4mRunning Command[0m[0;36m	[ 3/8 ]
 ----------------------------------------[0m
 
-total 248
+total 252
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
 -rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
 -rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
--rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
 -rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
 -rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
 drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests
--rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp
 drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build
--rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js
--rw-rw-r--  1 logan logan 23546 Mar  1 21:22 README.md
 -rw-rw-r--  1 logan logan   180 Mar  1 21:24 Makefile
-drwxrwxr-x  8 logan logan  4096 Mar  1 21:24 .git
--rw-rw-r--  1 logan logan 20835 Mar  1 21:24 test.html
--rw-rw-r--  1 logan logan     0 Mar  1 21:24 test.log
-drwxrwxr-x  5 logan logan  4096 Mar  1 21:24 .
+-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json
+drwxrwxr-x  5 logan logan  4096 Mar  1 21:49 .
+-rw-rw-r--  1 logan logan  1416 Mar  1 21:57 test.js
+-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp
+-rw-rw-r--  1 logan logan 24121 Mar  1 22:18 README.md
+drwxrwxr-x  8 logan logan  4096 Mar  1 22:18 .git
+-rw-rw-r--  1 logan logan 21123 Mar  1 22:18 test.html
+-rw-rw-r--  1 logan logan     0 Mar  1 22:18 test.log
 
 [0;32m✔ Command [ 3/8 ] exited with 0.
 ----------------------------------------[0m
@@ -146,24 +146,24 @@ Works
 [0;36m￭ [4mRunning Command[0m[0;36m	[ 3/8 ]
 ----------------------------------------[0m
 
-total 248
+total 252
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
 -rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
 -rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
--rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
 -rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
 -rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
 drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests
--rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp
 drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build
--rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js
--rw-rw-r--  1 logan logan 23546 Mar  1 21:22 README.md
 -rw-rw-r--  1 logan logan   180 Mar  1 21:24 Makefile
-drwxrwxr-x  8 logan logan  4096 Mar  1 21:24 .git
--rw-rw-r--  1 logan logan 20835 Mar  1 21:24 test.html
--rw-rw-r--  1 logan logan     0 Mar  1 21:24 test.log
-drwxrwxr-x  5 logan logan  4096 Mar  1 21:24 .
+-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json
+drwxrwxr-x  5 logan logan  4096 Mar  1 21:49 .
+-rw-rw-r--  1 logan logan  1416 Mar  1 21:57 test.js
+-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp
+-rw-rw-r--  1 logan logan 24121 Mar  1 22:18 README.md
+drwxrwxr-x  8 logan logan  4096 Mar  1 22:18 .git
+-rw-rw-r--  1 logan logan 21123 Mar  1 22:18 test.html
+-rw-rw-r--  1 logan logan     0 Mar  1 22:18 test.log
 
 [0;32m✔ Command [ 3/8 ] exited with 0.
 ----------------------------------------[0m
@@ -222,24 +222,24 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis nisi at ju
       'tests' ],
     exit_code: 0 ],
   [ output: [ 'Works' ], exit_code: 0 ],
-  [ output: [ 'total 248',
+  [ output: [ 'total 252',
       'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
       '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
       '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
       '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
-      '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
       '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
       '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
       'drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests',
-      '-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp',
       'drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build',
-      '-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js',
-      '-rw-rw-r--  1 logan logan 23546 Mar  1 21:22 README.md',
       '-rw-rw-r--  1 logan logan   180 Mar  1 21:24 Makefile',
-      'drwxrwxr-x  8 logan logan  4096 Mar  1 21:24 .git',
-      '-rw-rw-r--  1 logan logan 20835 Mar  1 21:24 test.html',
-      '-rw-rw-r--  1 logan logan     0 Mar  1 21:24 test.log',
-      'drwxrwxr-x  5 logan logan  4096 Mar  1 21:24 .' ],
+      '-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 21:49 .',
+      '-rw-rw-r--  1 logan logan  1416 Mar  1 21:57 test.js',
+      '-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp',
+      '-rw-rw-r--  1 logan logan 24121 Mar  1 22:18 README.md',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 22:18 .git',
+      '-rw-rw-r--  1 logan logan 21123 Mar  1 22:18 test.html',
+      '-rw-rw-r--  1 logan logan     0 Mar  1 22:18 test.log' ],
     exit_code: 0 ],
   [ output: [ 'Exit 0' ], exit_code: 0 ],
   [ output: [ 'Exit 1' ], exit_code: 1 ],

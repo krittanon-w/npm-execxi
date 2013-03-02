@@ -85,11 +85,14 @@ execxi.executeArray(<Array> Commands[, <Object> Options] )
 
     1 : ["output": Array(), "exit_code": int],
 
-    // as you can see there are two things that we return about the first command
+    // As you can see there are two things that we return about the first command
     // "output" and "exit_code"
+    //
+    // Not available if returnOption is turned off (it is on by default):
     // "output" is an array of the command's output, first line being the 1st key 
     // in the array, second line being the 2nd key in the array... and so on.
     // You can see the example output below in the Example section of this Read Me.
+    //
     // "exit_code" is just the exit code of the command that we ran.
 
     "max": int, // number of commands that you wanted to run
