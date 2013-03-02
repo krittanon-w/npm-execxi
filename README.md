@@ -120,7 +120,6 @@ If the output's line is more than the maximum bytes, then the rest of the charac
 [Back To Top](#)
 
 ```js
-// var execxi = require("./build/Release/execxi.node");
 
 //require the extension/module/wtv
 var execxi = require("execxi");
@@ -151,10 +150,20 @@ var res = execxi.executeArray(tests_to_run);
 console.dir(res);
 
 // lets run without chained mode on, and also observe
-var res = execxi.executeArray(tests_to_run, false);
+var res = execxi.executeArray(tests_to_run, {"chained": false});
 
 // lets see what it returns as a result array
 console.dir(res);
+
+// lets only run this one if the previous one had a 100% pass
+console.log ("Lets only run this one if the previous one had a 100% pass");
+if (res[0]) {
+    console.log("everything passed");
+    var res = execxi.executeArray(regular, {"chained": false});
+    console.dir(res);
+} else {
+    console.log("Not running this: previous one did not have a 100% pass");
+}
 ```
 
 ## Output
