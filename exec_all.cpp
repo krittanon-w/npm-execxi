@@ -167,7 +167,7 @@ Handle<Value> executeArray(const Arguments& args) {
       // exitcode = execxi.run(cmd);
 
       FILE *in;
-      char buff[512];
+      char buff[16384];
 
       if(!(in = popen(cmd.c_str(), "r"))){
         // fatal error running command

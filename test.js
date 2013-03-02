@@ -21,7 +21,7 @@ var regular = Array("ls","echo \"Works\"", "ls -lart");
 var tests_to_run = Array();
 tests_to_run = tests_to_run.concat(regular, exit_codes,non_existent, long_text);
 
-// Right now we have array of 7 commands to run
+// Right now we have array of 8 commands to run
 
 // lets run in chained mode to observe
 var res = execxi.executeArray(tests_to_run);
