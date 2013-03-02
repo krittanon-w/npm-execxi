@@ -33,3 +33,13 @@ var res = execxi.executeArray(tests_to_run, {"chained": false});
 
 // lets see what it returns as a result array
 console.dir(res);
+
+// lets only run this one if the previous one had a 100% pass
+console.log ("Lets only run this one if the previous one had a 100% pass");
+if (res[0]) {
+    console.log("everything passed");
+    var res = execxi.executeArray(regular, {"chained": false});
+    console.dir(res);
+} else {
+    console.log("Not running this: previous one did not have a 100% pass");
+}

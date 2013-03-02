@@ -169,12 +169,10 @@ That example outputs something long like this:
 
 - Copy/Paste from console:
 
-Colored demonstration is available at [Test.Html](test.html)
 ```
-logan@home:~/projects/npm-execxi$ node test
+logan@home:~/projects/npm-execxi$ make test
 ```
 ```
-
 ￭ Running Command [ 1/8 ]
 ----------------------------------------
 
@@ -186,7 +184,9 @@ execxi.sublime-workspace
 Makefile
 package.json
 README.md
+test.html
 test.js
+test.log
 tests
 
 ✔ Command [ 1/8 ] exited with 0.
@@ -205,22 +205,24 @@ Works
 ￭ Running Command [ 3/8 ]
 ----------------------------------------
 
-total 200
+total 272
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
 -rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
--rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile
 -rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
--rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
 -rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
 -rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
 drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests
--rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp
-drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .
 drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build
--rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md
--rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js
-drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git
+-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json
+-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp
+-rw-rw-r--  1 logan logan 24505 Mar  1 22:37 README.md
+-rw-rw-r--  1 logan logan 21419 Mar  1 22:41 test.html
+-rw-rw-r--  1 logan logan 18778 Mar  1 22:41 test.log
+-rw-rw-r--  1 logan logan   180 Mar  1 22:43 Makefile
+drwxrwxr-x  5 logan logan  4096 Mar  1 22:44 .
+-rw-rw-r--  1 logan logan  1780 Mar  1 22:47 test.js
+drwxrwxr-x  8 logan logan  4096 Mar  1 22:47 .git
 
 ✔ Command [ 3/8 ] exited with 0.
 ----------------------------------------
@@ -254,26 +256,30 @@ Exit 1
       'Makefile',
       'package.json',
       'README.md',
+      'test.html',
       'test.js',
+      'test.log',
       'tests' ],
     exit_code: 0 ],
   [ output: [ 'Works' ], exit_code: 0 ],
-  [ output: [ 'total 200',
+  [ output: [ 'total 272',
       'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
       '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
       '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
-      '-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile',
       '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
-      '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
       '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
       '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
       'drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests',
-      '-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp',
-      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .',
       'drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build',
-      '-rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md',
-      '-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js',
-      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git' ],
+      '-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json',
+      '-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp',
+      '-rw-rw-r--  1 logan logan 24505 Mar  1 22:37 README.md',
+      '-rw-rw-r--  1 logan logan 21419 Mar  1 22:41 test.html',
+      '-rw-rw-r--  1 logan logan 18778 Mar  1 22:41 test.log',
+      '-rw-rw-r--  1 logan logan   180 Mar  1 22:43 Makefile',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 22:44 .',
+      '-rw-rw-r--  1 logan logan  1780 Mar  1 22:47 test.js',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 22:47 .git' ],
     exit_code: 0 ],
   [ output: [ 'Exit 0' ], exit_code: 0 ],
   [ output: [ 'Exit 1' ], exit_code: 1 ],
@@ -293,7 +299,9 @@ execxi.sublime-workspace
 Makefile
 package.json
 README.md
+test.html
 test.js
+test.log
 tests
 
 ✔ Command [ 1/8 ] exited with 0.
@@ -312,22 +320,24 @@ Works
 ￭ Running Command [ 3/8 ]
 ----------------------------------------
 
-total 200
+total 272
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
 -rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
--rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile
 -rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
--rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
 -rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
 -rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
 drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests
--rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp
-drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .
 drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build
--rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md
--rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js
-drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git
+-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json
+-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp
+-rw-rw-r--  1 logan logan 24505 Mar  1 22:37 README.md
+-rw-rw-r--  1 logan logan 21419 Mar  1 22:41 test.html
+-rw-rw-r--  1 logan logan 18778 Mar  1 22:41 test.log
+-rw-rw-r--  1 logan logan   180 Mar  1 22:43 Makefile
+drwxrwxr-x  5 logan logan  4096 Mar  1 22:44 .
+-rw-rw-r--  1 logan logan  1780 Mar  1 22:47 test.js
+drwxrwxr-x  8 logan logan  4096 Mar  1 22:47 .git
 
 ✔ Command [ 3/8 ] exited with 0.
 ----------------------------------------
@@ -409,26 +419,30 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis nisi at ju
       'Makefile',
       'package.json',
       'README.md',
+      'test.html',
       'test.js',
+      'test.log',
       'tests' ],
     exit_code: 0 ],
   [ output: [ 'Works' ], exit_code: 0 ],
-  [ output: [ 'total 200',
+  [ output: [ 'total 272',
       'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
       '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
       '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
-      '-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile',
       '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
-      '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
       '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
       '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
       'drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests',
-      '-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp',
-      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .',
       'drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build',
-      '-rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md',
-      '-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js',
-      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git' ],
+      '-rw-rw-r--  1 logan logan   837 Mar  1 21:26 package.json',
+      '-rw-rw-r--  1 logan logan 13055 Mar  1 22:11 exec_all.cpp',
+      '-rw-rw-r--  1 logan logan 24505 Mar  1 22:37 README.md',
+      '-rw-rw-r--  1 logan logan 21419 Mar  1 22:41 test.html',
+      '-rw-rw-r--  1 logan logan 18778 Mar  1 22:41 test.log',
+      '-rw-rw-r--  1 logan logan   180 Mar  1 22:43 Makefile',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 22:44 .',
+      '-rw-rw-r--  1 logan logan  1780 Mar  1 22:47 test.js',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 22:47 .git' ],
     exit_code: 0 ],
   [ output: [ 'Exit 0' ], exit_code: 0 ],
   [ output: [ 'Exit 1' ], exit_code: 1 ],
@@ -440,6 +454,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis nisi at ju
   ran: 8,
   failed: 3,
   passed: 5 ]
+Lets only run this one if the previous one had a 100% pass
+Not running this: previous one did not have a 100% pass
+
 ```
 
 ## Legal mambo jambo
