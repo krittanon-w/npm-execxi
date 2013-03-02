@@ -18,18 +18,20 @@
                 \ \_\                              
                  \/_/                              
 
-# Jump to Section
+
+
+# execXI
+
+ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !
+
+## Jump to Section
 
 
 * [Installation](#installation)
 * [Usage](#usage)
 * [Example](#example)
 * [Example Output to Console](#output)
-* [Legal Stuff](#legal-mombo-jombo)
-
-# execXI
-
-ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !
+* [Legal Stuff](#legal-mambo-jambo)
 
 ## Installation
 [Back To Top](#)
@@ -70,11 +72,25 @@ execxi.executeArray(<Array> Commands[, <bool> Chained = true] )
 ```js
 [
     0: bool, // true if all commands exited with code 0, false if one or more exited with other than 0.
-    1: int, // exit code of the first command that is run
-    2: int, // exit code of the second command that is run
-//  ...
-//  ...
-    n: int, // exit code of the nth command that is run. (these numbers corresponds with commands that have been run, just note that in our commands array the first command would "be" with key [0] when here it is with key [1] )
+
+    // here will be information about the commands you have run
+    // lets say you wanted to run 10 commands, then 
+    // [1] will point to an Array with first command's output and exit code
+    // [2] will point to an Array with second command's output and exit code
+    // ...
+    // ...
+    // [n] will point to an Array with nth command's output and exit code
+    // As an example let's assume we have one command:
+
+    1 : ["output": Array(), "exit_code": int],
+
+    // as you can see there are two things that we return about the first command
+    // "output" and "exit_code"
+    // "output" is an array of the command's output, first line being the 1st key 
+    // in the array, second line being the 2nd key in the array... and so on.
+    // You can see the example output below in the Example section of this Read Me.
+    // "exit_code" is just the exit code of the command that we ran.
+
     "max": int, // number of commands that you wanted to run
     "ran": int, // number of commands that have been run, or at least tried to run.
     "failed": int, // number of commands that have failed (exited with other than 0)
@@ -134,18 +150,17 @@ That example outputs something long like this:
 ```
 logan@home:~/projects/npm-execxi$ node test
 
-￭ Running Command   [ 1/7 ]
+￭ Running Command [ 1/7 ]
 ----------------------------------------
 
 binding.gyp
 build
 exec_all.cpp
-execxi.cpp
-execxi.h
 execxi.sublime-project
 execxi.sublime-workspace
 Makefile
 package.json
+ping.log
 README.md
 test.js
 tests
@@ -154,7 +169,7 @@ tests
 ----------------------------------------
 
 
-￭ Running Command   [ 2/7 ]
+￭ Running Command [ 2/7 ]
 ----------------------------------------
 
 Works
@@ -163,32 +178,32 @@ Works
 ----------------------------------------
 
 
-￭ Running Command   [ 3/7 ]
+￭ Running Command [ 3/7 ]
 ----------------------------------------
 
-total 168
-drwxrwxr-x  2 logan logan  4096 Feb 27 02:00 tests
--rw-rw-r--  1 logan logan   362 Feb 28 00:01 README.md
+total 208
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
--rw-rw-r--  1 logan logan 15220 Feb 28 00:16 execxi.sublime-workspace
--rw-rw-r--  1 logan logan   154 Feb 28 00:16 .gitignore
--rw-rw-r--  1 logan logan   587 Feb 28 00:17 package.json
--rw-rw-r--  1 logan logan   496 Feb 28 00:18 test.js
--rw-rw-r--  1 logan logan    52 Feb 28 00:24 Makefile
--rw-rw-r--  1 logan logan  1339 Feb 28 00:27 execxi.h
--rw-rw-r--  1 logan logan  1421 Feb 28 00:27 execxi.cpp
--rw-rw-r--  1 logan logan   115 Feb 28 00:29 binding.gyp
-drwxrwxr-x  5 logan logan  4096 Feb 28 00:49 .
-drwxrwxr-x  3 logan logan  4096 Feb 28 00:49 build
--rw-rw-r--  1 logan logan  7755 Feb 28 00:57 exec_all.cpp
-drwxrwxr-x  8 logan logan  4096 Feb 28 00:57 .git
+-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
+-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile
+-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
+drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests
+-rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js
+-rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md
+-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
+-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
+-rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log
+-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
+drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .
+drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build
+-rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp
+drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git
 
 ✔ Command [ 3/7 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command   [ 4/7 ]
+￭ Running Command [ 4/7 ]
 ----------------------------------------
 
 Exit 0
@@ -197,7 +212,7 @@ Exit 0
 ----------------------------------------
 
 
-￭ Running Command   [ 5/7 ]
+￭ Running Command [ 5/7 ]
 ----------------------------------------
 
 Exit 1
@@ -207,20 +222,56 @@ Exit 1
   ▲ If you would like to continue after a command doesn't exit with code 0, supply "executeArray(<Array> Commands, <bool> Chained)" function with "Chained" = "false" argument.
 ----------------------------------------
 
-[ false, 0, 0, 0, 0, 1, max: 7, ran: 5, failed: 1, passed: 4 ]
+[ false,
+  [ output: [ 'binding.gyp',
+      'build',
+      'exec_all.cpp',
+      'execxi.sublime-project',
+      'execxi.sublime-workspace',
+      'Makefile',
+      'package.json',
+      'ping.log',
+      'README.md',
+      'test.js',
+      'tests' ],
+    exit_code: 0 ],
+  [ output: [ 'Works' ], exit_code: 0 ],
+  [ output: [ 'total 208',
+      'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
+      '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
+      '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
+      '-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile',
+      '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
+      'drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests',
+      '-rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js',
+      '-rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md',
+      '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
+      '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
+      '-rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log',
+      '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .',
+      'drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build',
+      '-rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git' ],
+    exit_code: 0 ],
+  [ output: [ 'Exit 0' ], exit_code: 0 ],
+  [ output: [ 'Exit 1' ], exit_code: 1 ],
+  max: 7,
+  ran: 5,
+  failed: 1,
+  passed: 4 ]
 
-￭ Running Command   [ 1/7 ]
+￭ Running Command [ 1/7 ]
 ----------------------------------------
 
 binding.gyp
 build
 exec_all.cpp
-execxi.cpp
-execxi.h
 execxi.sublime-project
 execxi.sublime-workspace
 Makefile
 package.json
+ping.log
 README.md
 test.js
 tests
@@ -229,7 +280,7 @@ tests
 ----------------------------------------
 
 
-￭ Running Command   [ 2/7 ]
+￭ Running Command [ 2/7 ]
 ----------------------------------------
 
 Works
@@ -238,32 +289,32 @@ Works
 ----------------------------------------
 
 
-￭ Running Command   [ 3/7 ]
+￭ Running Command [ 3/7 ]
 ----------------------------------------
 
-total 168
-drwxrwxr-x  2 logan logan  4096 Feb 27 02:00 tests
--rw-rw-r--  1 logan logan   362 Feb 28 00:01 README.md
+total 208
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
--rw-rw-r--  1 logan logan 15220 Feb 28 00:16 execxi.sublime-workspace
--rw-rw-r--  1 logan logan   154 Feb 28 00:16 .gitignore
--rw-rw-r--  1 logan logan   587 Feb 28 00:17 package.json
--rw-rw-r--  1 logan logan   496 Feb 28 00:18 test.js
--rw-rw-r--  1 logan logan    52 Feb 28 00:24 Makefile
--rw-rw-r--  1 logan logan  1339 Feb 28 00:27 execxi.h
--rw-rw-r--  1 logan logan  1421 Feb 28 00:27 execxi.cpp
--rw-rw-r--  1 logan logan   115 Feb 28 00:29 binding.gyp
-drwxrwxr-x  5 logan logan  4096 Feb 28 00:49 .
-drwxrwxr-x  3 logan logan  4096 Feb 28 00:49 build
--rw-rw-r--  1 logan logan  7755 Feb 28 00:57 exec_all.cpp
-drwxrwxr-x  8 logan logan  4096 Feb 28 00:57 .git
+-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
+-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile
+-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
+drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests
+-rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js
+-rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md
+-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
+-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
+-rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log
+-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
+drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .
+drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build
+-rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp
+drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git
 
 ✔ Command [ 3/7 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command   [ 4/7 ]
+￭ Running Command [ 4/7 ]
 ----------------------------------------
 
 Exit 0
@@ -272,7 +323,7 @@ Exit 0
 ----------------------------------------
 
 
-￭ Running Command   [ 5/7 ]
+￭ Running Command [ 5/7 ]
 ----------------------------------------
 
 Exit 1
@@ -281,7 +332,7 @@ Exit 1
 ----------------------------------------
 
 
-￭ Running Command   [ 6/7 ]
+￭ Running Command [ 6/7 ]
 ----------------------------------------
 
 Exit 2
@@ -290,7 +341,7 @@ Exit 2
 ----------------------------------------
 
 
-￭ Running Command   [ 7/7 ]
+￭ Running Command [ 7/7 ]
 ----------------------------------------
 
 
@@ -321,10 +372,50 @@ Exit 2
 ----------------------------------------
 ----------------------------------------
 
-[ false, 0, 0, 0, 0, 1, 2, 127, max: 7, ran: 7, failed: 3, passed: 4 ]
+[ false,
+  [ output: [ 'binding.gyp',
+      'build',
+      'exec_all.cpp',
+      'execxi.sublime-project',
+      'execxi.sublime-workspace',
+      'Makefile',
+      'package.json',
+      'ping.log',
+      'README.md',
+      'test.js',
+      'tests' ],
+    exit_code: 0 ],
+  [ output: [ 'Works' ], exit_code: 0 ],
+  [ output: [ 'total 208',
+      'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
+      '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
+      '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
+      '-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile',
+      '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
+      'drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests',
+      '-rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js',
+      '-rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md',
+      '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
+      '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
+      '-rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log',
+      '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .',
+      'drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build',
+      '-rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git' ],
+    exit_code: 0 ],
+  [ output: [ 'Exit 0' ], exit_code: 0 ],
+  [ output: [ 'Exit 1' ], exit_code: 1 ],
+  [ output: [ 'Exit 2' ], exit_code: 2 ],
+  [ output: [], exit_code: 127 ],
+  max: 7,
+  ran: 7,
+  failed: 3,
+  passed: 4 ]
+
 ```
 
-## Legal mombo jombo
+## Legal mambo jambo
 
 [Back To Top](#)
 
