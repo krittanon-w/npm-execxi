@@ -31,6 +31,7 @@ Returns exit code of all the commands, and outputs of all the commands. (Be care
 
 * [Installation](#installation)
 * [Usage](#usage)
+* [Options](#options)
 * [Example](#example)
 * [Example Output to Console](#output)
 * [Legal Stuff](#legal-mambo-jambo)
@@ -56,7 +57,7 @@ make
 
 ```
 var execxi = require("execxi");
-execxi.executeArray(<Array> Commands[, <bool> Chained = true] )
+execxi.executeArray(<Array> Commands[, <Object> Options] )
 ```
 
 - You just supply with one or two arguments. First is the array of commands to run, such as:
@@ -64,8 +65,6 @@ execxi.executeArray(<Array> Commands[, <bool> Chained = true] )
 ```js
 [ "ls", "ls -lart"] //as many as you want (I suppose)
 ```
-
-- Second argument `Chained`, which is `true` by default, is an option that can stop running commands after one of them failed. To see if it failed, it checks the exit code of the command that is run.
 
 - In the end it outputs a summary to the console, stating how many commands are run, how many passed, how many failed and which ones passed and failed.
 
@@ -100,6 +99,19 @@ execxi.executeArray(<Array> Commands[, <bool> Chained = true] )
 ]
 ```
 If the output's line is more than the maximum bytes, then the rest of the characters will be treated as if it's in the next line. Meaning that you can find a very long line split into two in the `output` array key. Right now the max char limit is `16384` bytes.
+
+## Options
+[Back To Top](#)
+
+- chained: bool
+
+  `chained`, which is `true` by default, is an option that can stop running commands after one of them failed. To see if it failed, it checks the exit code of the command that is run.
+
+- returnOutput: bool
+  `returnOutput` is also `true` by default. This is what returns the output in an array, parsing them line by line. I supply with this option because sometimes you might run a command that only returns server's IP address or sometimes you can run a command that just outputs very long lines and a very long text. I added the ability to opt out so that when unnecessary you might set it to false.
+
+
+
 
 ## Example
 [Back To Top](#)
