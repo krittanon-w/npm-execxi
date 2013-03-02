@@ -313,12 +313,6 @@ Handle<Value> executeArray(const Arguments& args) {
               << CRSS << " "
               << "Command " << current.str() << " exited with: " << exitcode << ". "
               << "Stopped at after running command #" << i+1 << "."
-              << std::endl
-              << std::endl
-              << YELLOW
-              << "  "
-              << TRIANGLE
-              << " If you would like to continue after a command doesn't exit with code 0, supply \"executeArray(<Array> Commands, <bool> Chained)\" function with \"Chained\" = \"false\" argument." 
               << std::endl << LINE
               << RESET
               << std::endl
