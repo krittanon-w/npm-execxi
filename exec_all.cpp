@@ -94,30 +94,44 @@ Handle<Value> executeArray(const Arguments& args) {
     {
       if (args[1]->IsObject())
       {
-        Handle<Object> opt = Handle<Object>::Cast(args[1]);
-        if (opt->Has(String::New("chained"))) {
-          /* code */
-          Handle<Value> _chained = opt->Get(String::New("chained"));
-          Chained = cv::CastFromJS<bool>(_chained);
+        // you must be passing options...
+        // it must be an object
 
-        } else {
-          ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for chained option")));
-          return scope.Close(Undefined());
+        Handle<Object> opt = Handle<Object>::Cast(args[1]);
+
+        if (opt->Has(String::New("chained"))) {
+          // you passed chained option
+          if ((opt->Get(String::New("chained"))->IsBoolean())){
+            // the chained option must be bool
+            Handle<Value> _chained = opt->Get(String::New("chained"));
+            Chained = cv::CastFromJS<bool>(_chained);
+
+          } else {
+            // chained is not bool, throw error
+            ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for chained option")));
+            return scope.Close(Undefined());
+          }
         }
 
         if (opt->Has(String::New("returnOutput"))) {
-          /* code */
-          Handle<Value> _returnOutput = opt->Get(String::New("returnOutput"));
-          returnOutput = cv::CastFromJS<bool>(_returnOutput);
+          //you passed returnOutput option
 
-        } else {
-          ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for returnOutput option")));
-          return scope.Close(Undefined());
+          if ((opt->Get(String::New("returnOutput"))->IsBoolean())){
+            // the returnOutput option must be bool
+            Handle<Value> _returnOutput = opt->Get(String::New("returnOutput"));
+            returnOutput = cv::CastFromJS<bool>(_returnOutput);
+          } else {
+            // returnOutput option isn't bool, throw error
+            ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for returnOutput option")));
+            return scope.Close(Undefined());
+          }
         }
-      } else {
-          ThrowException(Exception::TypeError(String::New("Wrong arguments, need Object for options")));
-          return scope.Close(Undefined());
-        }
+      } 
+      else {
+        // options must be object, if not, throw error
+        ThrowException(Exception::TypeError(String::New("Wrong arguments, need Object for options")));
+        return scope.Close(Undefined());
+      }
     }
  
       Handle<Array> array = Handle<Array>::Cast(args[0]);

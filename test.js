@@ -29,7 +29,7 @@ var res = execxi.executeArray(tests_to_run);
 console.dir(res);
 
 // lets run without chained mode on, and also observe
-var res = execxi.executeArray(tests_to_run, false);
+var res = execxi.executeArray(tests_to_run, {"chained": false});
 
 // lets see what it returns as a result array
 console.dir(res);
