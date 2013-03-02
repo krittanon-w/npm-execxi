@@ -97,7 +97,7 @@ execxi.executeArray(<Array> Commands[, <bool> Chained = true] )
     "passed": int // number of commands that have passed (exited with 0)
 ]
 ```
-One line of output is limited to the capabilities of a `char[512]` in C++.
+If the output's line is more than the maximum bytes, then the rest of the characters will be treated as if it's in the next line. Meaning that you can find a very long line split into two in the `output` array key. Right now the max char limit is `512` bytes.
 
 ## Example
 [Back To Top](#)
