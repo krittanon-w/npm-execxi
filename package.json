@@ -24,8 +24,10 @@
     }
   ], 
   "scripts" : {
-      "preinstall" : "node-gyp configure build", 
-      "preuninstall" : "rm -rf build/*"
+      "preinstall" : "make", 
+      "preuninstall" : "make clean",
+      "test" : "make test",
+      "gentest" : "make gentest"
     },
   "main" : "build/Release/execxi.node",
   "licenses": [

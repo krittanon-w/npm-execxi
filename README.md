@@ -152,10 +152,13 @@ That example outputs something long like this:
 
 - Copy/Paste from console:
 
+Colored demonstration is available at [Test.Html](test.html)
 ```
 logan@home:~/projects/npm-execxi$ node test
+```
+```
 
-￭ Running Command [ 1/7 ]
+￭ Running Command [ 1/8 ]
 ----------------------------------------
 
 binding.gyp
@@ -165,64 +168,62 @@ execxi.sublime-project
 execxi.sublime-workspace
 Makefile
 package.json
-ping.log
 README.md
 test.js
 tests
 
-✔ Command [ 1/7 ] exited with 0.
+✔ Command [ 1/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 2/7 ]
+￭ Running Command [ 2/8 ]
 ----------------------------------------
 
 Works
 
-✔ Command [ 2/7 ] exited with 0.
+✔ Command [ 2/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 3/7 ]
+￭ Running Command [ 3/8 ]
 ----------------------------------------
 
-total 208
+total 200
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
 -rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
 -rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile
 -rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
-drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests
--rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js
--rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md
 -rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
 -rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
--rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log
 -rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
-drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .
-drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build
--rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp
-drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git
+drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests
+-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp
+drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .
+drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build
+-rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md
+-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js
+drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git
 
-✔ Command [ 3/7 ] exited with 0.
+✔ Command [ 3/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 4/7 ]
+￭ Running Command [ 4/8 ]
 ----------------------------------------
 
 Exit 0
 
-✔ Command [ 4/7 ] exited with 0.
+✔ Command [ 4/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 5/7 ]
+￭ Running Command [ 5/8 ]
 ----------------------------------------
 
 Exit 1
 
-✗ Command [ 5/7 ] exited with: 1. Stopped at after running command #5.
+✗ Command [ 5/8 ] exited with: 1. Stopped at after running command #5.
 
   ▲ If you would like to continue after a command doesn't exit with code 0, supply "executeArray(<Array> Commands, <bool> Chained)" function with "Chained" = "false" argument.
 ----------------------------------------
@@ -235,38 +236,36 @@ Exit 1
       'execxi.sublime-workspace',
       'Makefile',
       'package.json',
-      'ping.log',
       'README.md',
       'test.js',
       'tests' ],
     exit_code: 0 ],
   [ output: [ 'Works' ], exit_code: 0 ],
-  [ output: [ 'total 208',
+  [ output: [ 'total 200',
       'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
       '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
       '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
       '-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile',
       '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
-      'drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests',
-      '-rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js',
-      '-rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md',
       '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
       '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
-      '-rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log',
       '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
-      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .',
-      'drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build',
-      '-rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp',
-      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git' ],
+      'drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests',
+      '-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .',
+      'drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build',
+      '-rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md',
+      '-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git' ],
     exit_code: 0 ],
   [ output: [ 'Exit 0' ], exit_code: 0 ],
   [ output: [ 'Exit 1' ], exit_code: 1 ],
-  max: 7,
+  max: 8,
   ran: 5,
   failed: 1,
   passed: 4 ]
 
-￭ Running Command [ 1/7 ]
+￭ Running Command [ 1/8 ]
 ----------------------------------------
 
 binding.gyp
@@ -276,81 +275,88 @@ execxi.sublime-project
 execxi.sublime-workspace
 Makefile
 package.json
-ping.log
 README.md
 test.js
 tests
 
-✔ Command [ 1/7 ] exited with 0.
+✔ Command [ 1/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 2/7 ]
+￭ Running Command [ 2/8 ]
 ----------------------------------------
 
 Works
 
-✔ Command [ 2/7 ] exited with 0.
+✔ Command [ 2/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 3/7 ]
+￭ Running Command [ 3/8 ]
 ----------------------------------------
 
-total 208
+total 200
 drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..
 -rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project
 -rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore
 -rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile
 -rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore
-drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests
--rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js
--rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md
 -rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json
 -rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace
--rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log
 -rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp
-drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .
-drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build
--rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp
-drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git
+drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests
+-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp
+drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .
+drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build
+-rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md
+-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js
+drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git
 
-✔ Command [ 3/7 ] exited with 0.
+✔ Command [ 3/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 4/7 ]
+￭ Running Command [ 4/8 ]
 ----------------------------------------
 
 Exit 0
 
-✔ Command [ 4/7 ] exited with 0.
+✔ Command [ 4/8 ] exited with 0.
 ----------------------------------------
 
 
-￭ Running Command [ 5/7 ]
+￭ Running Command [ 5/8 ]
 ----------------------------------------
 
 Exit 1
 
-▲ Command [ 5/7 ] exited with 1.
+▲ Command [ 5/8 ] exited with 1.
 ----------------------------------------
 
 
-￭ Running Command [ 6/7 ]
+￭ Running Command [ 6/8 ]
 ----------------------------------------
 
 Exit 2
 
-▲ Command [ 6/7 ] exited with 2.
+▲ Command [ 6/8 ] exited with 2.
 ----------------------------------------
 
 
-￭ Running Command [ 7/7 ]
+￭ Running Command [ 7/8 ]
 ----------------------------------------
 
 
-▲ Command [ 7/7 ] exited with 127.
+▲ Command [ 7/8 ] exited with 127.
+----------------------------------------
+
+
+￭ Running Command [ 8/8 ]
+----------------------------------------
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis nisi at justo elementum fermentum. Donec tincidunt, lectus nec bibendum sagittis, lectus purus placerat libero, quis varius tellus magna nec felis. Phasellus non lobortis velit. Suspendisse eget lorem neque. Donec sem risus, feugiat eu pulvinar eu, elementum a dui. Suspendisse sed urna non lacus luctus dapibus. Curabitur tristique nunc ac nibh cursus dignissim eleifend mauris ullamcorper. Ut mauris est, venenatis quis rutrum at, facilisis non massa. Praesent imperdiet neque at augue egestas bibendum. Sed eu elit eget felis iaculis pretium. Donec sagittis pulvinar diam a sagittis. Aenean eu tincidunt nunc. Proin imperdiet pellentesque diam a adipiscing. Curabitur eget velit a lectus varius ornare. Nullam bibendum rutrum dignissim. Phasellus posuere scelerisque imperdiet. Integer faucibus consectetur semper. Aenean nibh neque, ornare vel molestie eget, pellentesque accumsan orci. Vivamus at interdum risus. Ut quis odio est, quis faucibus libero. Curabitur gravida condimentum pharetra. Quisque ut ipsum augue, vulputate porttitor justo. In hac habitasse platea dictumst. Sed ut quam odio. Maecenas at mauris quam, id hendrerit ipsum. Nam ut lacus orci. Suspendisse arcu libero, gravida vel posuere dapibus, bibendum vitae libero. Fusce non turpis velit, in tristique nisl. Etiam a tellus ac enim fermentum pellentesque. Mauris cursus, tortor et venenatis varius, orci leo convallis sem, et pellentesque purus velit non orci. Fusce sit amet interdum sem. Ut quis sapien sapien. Etiam luctus nibh non turpis euismod vitae porttitor lacus dictum. Duis nec turpis id tortor imperdiet adipiscing eget et erat. Fusce ultrices mattis urna at suscipit. Vivamus eget risus vestibulum enim posuere sollicitudin consequat eget nisl. Quisque neque nisi, molestie et gravida vel, pretium quis mauris. Aenean nec vehicula lorem. Sed eget porttitor neque. Nunc leo ligula, aliquet eget lacinia et, sollicitudin eget erat. In elementum viverra sodales. Curabitur dui ligula, iaculis sit amet fermentum quis, pharetra quis magna. Praesent ornare consequat felis, at mollis neque mollis quis. Fusce nec ipsum turpis, vitae vehicula lacus. Vestibulum nulla elit, convallis non sodales id, tristique sed arcu. Nulla ligula est, lacinia aliquet faucibus nec, congue gravida nunc. Nunc pellentesque tristique adipiscing. Pellentesque orci leo, rhoncus quis elementum non, elementum bibendum magna. Fusce dignissim sodales neque sit amet luctus. Integer ac urna nec est aliquam auctor quis et urna. In ornare velit vitae risus vehicula hendrerit. Duis semper, massa quis rhoncus sagittis, nunc eros egestas neque, sit amet auctor lacus nibh vel leo. Phasellus non nisi eu ipsum scelerisque mattis vitae vel mauris. Phasellus a mauris a sem pellentesque porttitor dapibus at massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean id augue nisl, in semper eros. Ut fermentum ipsum eu metus tempor porta. In consectetur est vitae ligula porta non condimentum libero mattis. Mauris imperdiet vehicula lacus lobortis pharetra. Sed pretium lorem non elit posuere sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sollicitudin enim euismod tortor feugiat vitae faucibus turpis varius. Pellentesque sed sagittis dolor. Aenean egestas augue in urna lobortis cursus congue mi vulputate. Donec mollis porttitor massa vitae vulputate. Ut in lobortis nisi. Proin sagittis arcu urna. Sed ut tincidunt mi. Duis eu odio eu velit tincidunt pellentesque. Donec vitae placerat eros. Etiam scelerisque euismod risus, sed pretium eros varius a. Praesent luctus facilisis tellus sed tincidunt. Maecenas ac turpis eu mauris malesuada aliquam. Sed mauris eros, lacinia non cursus id, rhoncus congue purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus molestie tincidunt ligula sed fringilla. Vestibulum mauris nisi, molestie adipiscing mollis sed, fringilla scelerisque dui. Donec euismod, nibh sed pretium venenatis, dui lectus porttitor tortor, sit amet bibendum velit nulla vitae enim. Aliquam turpis massa, commodo vel elementum suscipit, pretium et quam. Aliquam erat volutpat. Integer aliquet nibh at neque adipiscing id tempor diam placerat. Ut non neque at massa dapibus cursus eu quis neque. Phasellus ut lectus ac massa malesuada mollis lobortis at felis. Proin et dolor nec nisl tristique adipiscing sed id nulla. Fusce dapibus neque vel tellus posuere vitae dignissim enim faucibus. Curabitur egestas vulputate justo, sed faucibus quam blandit imperdiet. Nunc et turpis elementum mi iaculis ultricies vitae eu nisl. Ut non magna dui, at vehicula velit. Ut a enim arcu. Cras fermentum lobortis justo, sed porta nisl dictum nec. Donec elementum feugiat erat, venenatis commodo libero bibendum imperdiet. Aliquam erat volutpat. Cras auctor mattis dui, in ultricies sem vehicula eu. Phasellus vel dignissim posuere.
+
+✔ Command [ 8/8 ] exited with 0.
 ----------------------------------------
 
 
@@ -360,12 +366,12 @@ Exit 2
 -               SUMMARY                -
 ----------------------------------------
 
-  ￭ Ran 7/7 commands.
+  ￭ Ran 8/8 commands.
 
 ----------------------------------------
 
-  ✔ Passed: 4 commands:
-  ✔ #1 #2 #3 #4 
+  ✔ Passed: 5 commands:
+  ✔ #1 #2 #3 #4 #8 
 
 ----------------------------------------
 
@@ -385,39 +391,38 @@ Exit 2
       'execxi.sublime-workspace',
       'Makefile',
       'package.json',
-      'ping.log',
       'README.md',
       'test.js',
       'tests' ],
     exit_code: 0 ],
   [ output: [ 'Works' ], exit_code: 0 ],
-  [ output: [ 'total 208',
+  [ output: [ 'total 200',
       'drwxr-xr-x 30 logan logan  4096 Feb 28 00:02 ..',
       '-rw-rw-r--  1 logan logan    73 Feb 28 00:16 execxi.sublime-project',
       '-rw-rw-r--  1 logan logan   154 Feb 28 01:16 .npmignore',
       '-rw-rw-r--  1 logan logan    52 Feb 28 02:02 Makefile',
       '-rw-rw-r--  1 logan logan   154 Feb 28 02:02 .gitignore',
-      'drwxrwxr-x  2 logan logan  4096 Feb 28 02:02 tests',
-      '-rw-rw-r--  1 logan logan   496 Feb 28 02:02 test.js',
-      '-rw-rw-r--  1 logan logan  9634 Feb 28 02:02 README.md',
       '-rw-rw-r--  1 logan logan   799 Feb 28 02:17 package.json',
       '-rw-rw-r--  1 logan logan 44835 Feb 28 06:44 execxi.sublime-workspace',
-      '-rw-rw-r--  1 logan logan   559 Mar  1 17:02 ping.log',
       '-rw-rw-r--  1 logan logan   102 Mar  1 18:21 binding.gyp',
-      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:16 .',
-      'drwxrwxr-x  3 logan logan  4096 Mar  1 20:16 build',
-      '-rw-rw-r--  1 logan logan 11327 Mar  1 20:16 exec_all.cpp',
-      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:17 .git' ],
+      'drwxrwxr-x  2 logan logan  4096 Mar  1 20:42 tests',
+      '-rw-rw-r--  1 logan logan 11329 Mar  1 20:50 exec_all.cpp',
+      'drwxrwxr-x  5 logan logan  4096 Mar  1 20:50 .',
+      'drwxrwxr-x  3 logan logan  4096 Mar  1 20:50 build',
+      '-rw-rw-r--  1 logan logan 13557 Mar  1 20:52 README.md',
+      '-rw-rw-r--  1 logan logan  1403 Mar  1 20:55 test.js',
+      'drwxrwxr-x  8 logan logan  4096 Mar  1 20:56 .git' ],
     exit_code: 0 ],
   [ output: [ 'Exit 0' ], exit_code: 0 ],
   [ output: [ 'Exit 1' ], exit_code: 1 ],
   [ output: [ 'Exit 2' ], exit_code: 2 ],
   [ output: [], exit_code: 127 ],
-  max: 7,
-  ran: 7,
+  [ output: [ 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis nisi at justo elementum fermentum. Donec tincidunt, lectus nec bibendum sagittis, lectus purus placerat libero, quis varius tellus magna nec felis. Phasellus non lobortis velit. Suspendisse eget lorem neque. Donec sem risus, feugiat eu pulvinar eu, elementum a dui. Suspendisse sed urna non lacus luctus dapibus. Curabitur tristique nunc ac nibh cursus dignissim eleifend mauris ullamcorper. Ut mauris est, venenatis quis rutrum at, facilisis non massa. Praesent imperdiet neque at augue egestas bibendum. Sed eu elit eget felis iaculis pretium. Donec sagittis pulvinar diam a sagittis. Aenean eu tincidunt nunc. Proin imperdiet pellentesque diam a adipiscing. Curabitur eget velit a lectus varius ornare. Nullam bibendum rutrum dignissim. Phasellus posuere scelerisque imperdiet. Integer faucibus consectetur semper. Aenean nibh neque, ornare vel molestie eget, pellentesque accumsan orci. Vivamus at interdum risus. Ut quis odio est, quis faucibus libero. Curabitur gravida condimentum pharetra. Quisque ut ipsum augue, vulputate porttitor justo. In hac habitasse platea dictumst. Sed ut quam odio. Maecenas at mauris quam, id hendrerit ipsum. Nam ut lacus orci. Suspendisse arcu libero, gravida vel posuere dapibus, bibendum vitae libero. Fusce non turpis velit, in tristique nisl. Etiam a tellus ac enim fermentum pellentesque. Mauris cursus, tortor et venenatis varius, orci leo convallis sem, et pellentesque purus velit non orci. Fusce sit amet interdum sem. Ut quis sapien sapien. Etiam luctus nibh non turpis euismod vitae porttitor lacus dictum. Duis nec turpis id tortor imperdiet adipiscing eget et erat. Fusce ultrices mattis urna at suscipit. Vivamus eget risus vestibulum enim posuere sollicitudin consequat eget nisl. Quisque neque nisi, molestie et gravida vel, pretium quis mauris. Aenean nec vehicula lorem. Sed eget porttitor neque. Nunc leo ligula, aliquet eget lacinia et, sollicitudin eget erat. In elementum viverra sodales. Curabitur dui ligula, iaculis sit amet fermentum quis, pharetra quis magna. Praesent ornare consequat felis, at mollis neque mollis quis. Fusce nec ipsum turpis, vitae vehicula lacus. Vestibulum nulla elit, convallis non sodales id, tristique sed arcu. Nulla ligula est, lacinia aliquet faucibus nec, congue gravida nunc. Nunc pellentesque tristique adipiscing. Pellentesque orci leo, rhoncus quis elementum non, elementum bibendum magna. Fusce dignissim sodales neque sit amet luctus. Integer ac urna nec est aliquam auctor quis et urna. In ornare velit vitae risus vehicula hendrerit. Duis semper, massa quis rhoncus sagittis, nunc eros egestas neque, sit amet auctor lacus nibh vel leo. Phasellus non nisi eu ipsum scelerisque mattis vitae vel mauris. Phasellus a mauris a sem pellentesque porttitor dapibus at massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean id augue nisl, in semper eros. Ut fermentum ipsum eu metus tempor porta. In consectetur est vitae ligula porta non condimentum libero mattis. Mauris imperdiet vehicula lacus lobortis pharetra. Sed pretium lorem non elit posuere sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sollicitudin enim euismod tortor feugiat vitae faucibus turpis varius. Pellentesque sed sagittis dolor. Aenean egestas augue in urna lobortis cursus congue mi vulputate. Donec mollis porttitor massa vitae vulputate. Ut in lobortis nisi. Proin sagittis arcu urna. Sed ut tincidunt mi. Duis eu odio eu velit tincidunt pellentesque. Donec vitae placerat eros. Etiam scelerisque euismod risus, sed pretium eros varius a. Praesent luctus facilisis tellus sed tincidunt. Maecenas ac turpis eu mauris malesuada aliquam. Sed mauris eros, lacinia non cursus id, rhoncus congue purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus molestie tincidunt ligula sed fringilla. Vestibulum mauris nisi, molestie adipiscing mollis sed, fringilla scelerisque dui. Donec euismod, nibh sed pretium venenatis, dui lectus porttitor tortor, sit amet bibendum velit nulla vitae enim. Aliquam turpis massa, commodo vel elementum suscipit, pretium et quam. Aliquam erat volutpat. Integer aliquet nibh at neque adipiscing id tempor diam placerat. Ut non neque at massa dapibus cursus eu quis neque. Phasellus ut lectus ac massa malesuada mollis lobortis at felis. Proin et dolor nec nisl tristique adipiscing sed id nulla. Fusce dapibus neque vel tellus posuere vitae dignissim enim faucibus. Curabitur egestas vulputate justo, sed faucibus quam blandit imperdiet. Nunc et turpis elementum mi iaculis ultricies vitae eu nisl. Ut non magna dui, at vehicula velit. Ut a enim arcu. Cras fermentum lobortis justo, sed porta nisl dictum nec. Donec elementum feugiat erat, venenatis commodo libero bibendum imperdiet. Aliquam erat volutpat. Cras auctor mattis dui, in ultricies sem vehicula eu. Phasellus vel dignissim posuere.' ],
+    exit_code: 0 ],
+  max: 8,
+  ran: 8,
   failed: 3,
-  passed: 4 ]
-
+  passed: 5 ]
 ```
 
 ## Legal mambo jambo
