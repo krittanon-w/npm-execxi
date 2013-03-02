@@ -67,11 +67,16 @@ using namespace v8;
 
 Handle<Value> executeArray(const Arguments& args) {
     HandleScope scope;
-
+    // OPTIONS
+    /////////////////////
     // Chained (bool)
     //   If a command doesn't exit with 0 then we won't run the next command
     //   default: true
     bool Chained = true;
+    // returnOutput (bool)
+    //  Lets say you know you are gonna cause some trouble when you return output
+    //  or even you won't really use it, you can turn it off now.
+    bool returnOutput = true;
    // String _usage = "\nUsage: \n\texecuteArray(<Array>Commands)";
     if (args.Length() != 1 && args.Length() != 2) {
     
@@ -86,15 +91,28 @@ Handle<Value> executeArray(const Arguments& args) {
 
     if (args.Length() == 2)
     {
-      if (args[1]->IsBoolean())
+      if (args[1]->IsObject())
       {
-        /* code */
-        v8::Local<Value> _chained = args[1];
-        Chained = cv::CastFromJS<bool>(_chained);
+        Handle<Object> opt = Handle<Object>::Cast(args[1]);
+        if (opt->Has(String::New("chained"))) {
+          /* code */
+          Handle<Value> _chained = opt->Get(String::New("chained"));
+          Chained = cv::CastFromJS<bool>(_chained);
 
-      } else {
-        ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for this option")));
-        return scope.Close(Undefined());
+        } else {
+          ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for chained option")));
+          return scope.Close(Undefined());
+        }
+
+        if (opt->Has(String::New("returnOutput"))) {
+          /* code */
+          Handle<Value> _returnOutput = opt->Get(String::New("returnOutput"));
+          returnOutput = cv::CastFromJS<bool>(_returnOutput);
+
+        } else {
+          ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for returnOutput option")));
+          return scope.Close(Undefined());
+        }
       }
     }
  
@@ -173,7 +191,9 @@ Handle<Value> executeArray(const Arguments& args) {
         // fatal error running command
         std::cout << fatal_error.str();
       }
-      // for array keys
+
+      
+      // for array keys for storing outputs
       int line_n;
       line_n =0;
       // for storing outputs line by line
