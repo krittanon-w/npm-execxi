@@ -31,6 +31,9 @@ console.dir(res);
 // lets run without chained mode on, and also observe
 var res = execxi.executeArray(tests_to_run, {"chained": false});
 
+// to test returnOutput option:
+// var res = execxi.executeArray(tests_to_run, {"chained": false, "returnOutput":false});
+
 // lets see what it returns as a result array
 console.dir(res);
 
