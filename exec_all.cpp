@@ -77,7 +77,8 @@ Handle<Value> executeArray(const Arguments& args) {
     //  Lets say you know you are gonna cause some trouble when you return output
     //  or even you won't really use it, you can turn it off now.
     bool returnOutput = true;
-   // String _usage = "\nUsage: \n\texecuteArray(<Array>Commands)";
+
+   // String _usage = "\nUsage: \n\texecuteArray(<Array>Commands, <Object>Options)";
     if (args.Length() != 1 && args.Length() != 2) {
     
         ThrowException(Exception::TypeError( String::New("Wrong number of arguments") ) );
@@ -85,7 +86,7 @@ Handle<Value> executeArray(const Arguments& args) {
     }
  
     if (!args[0]->IsArray()) {
-        ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+        ThrowException(Exception::TypeError(String::New("Wrong arguments, need Array for Commands")));
         return scope.Close(Undefined());
     }
 
@@ -113,7 +114,10 @@ Handle<Value> executeArray(const Arguments& args) {
           ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for returnOutput option")));
           return scope.Close(Undefined());
         }
-      }
+      } else {
+          ThrowException(Exception::TypeError(String::New("Wrong arguments, need Object for options")));
+          return scope.Close(Undefined());
+        }
     }
  
       Handle<Array> array = Handle<Array>::Cast(args[0]);
