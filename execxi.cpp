@@ -45,38 +45,50 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-// #include "./execxi.h"
+#include <set>
 namespace cv = cvv8;
 using namespace v8;
- 
-#define RESET "\033[0m"
-#define GREEN "\033[0;32m"
-#define CYAN "\033[0;36m"
-#define YELLOW "\033[0;33m"
-#define RED "\033[0;31m"
 
-#define TICK "\u2714"
-#define BLET "\uffed"
-#define CRSS "\u2717"
-#define TRIANGLE "\u25B2"
-
-#define LINE "----------------------------------------"
-#define UNDER "\033[4m"
-#define BOLD "\033[1m"
 
 
 Handle<Value> executeArray(const Arguments& args) {
     HandleScope scope;
-    // OPTIONS
+    // DEFAULT OPTIONS
     /////////////////////
+    
+    //
     // Chained (bool)
     //   If a command doesn't exit with 0 then we won't run the next command
     //   default: true
     bool Chained = true;
+    
+    //
     // returnOutput (bool)
     //  Lets say you know you are gonna cause some trouble when you return output
     //  or even you won't really use it, you can turn it off now.
     bool returnOutput = true;
+    
+    //
+    // exitSuccess (std::set)
+    //  The exit codes you want to allow
+    std::set<int> exitSuccess;
+
+    //
+    // default values for prettyPrint
+    bool prettyPrint = true;
+    // these are formatting strings
+    std::string 
+      RESET, GREEN, CYAN, YELLOW, RED,
+      TICK, BULLET, CROSS, TRIANGLE,
+      LINE, UNDER, BOLD;
+
+    //
+    // verbose (bool)
+    //   Output the command output and information
+    bool Verbose = true; 
+
+
+
 
    // String _usage = "\nUsage: \n\texecuteArray(<Array>Commands, <Object>Options)";
     if (args.Length() != 1 && args.Length() != 2) {
@@ -90,12 +102,23 @@ Handle<Value> executeArray(const Arguments& args) {
         return scope.Close(Undefined());
     }
 
+  //               __                                  
+  //              /\ \__  __                           
+  //   ___   _____\ \ ,_\/\_\    ___     ___     ____  
+  //  / __`\/\ '__`\ \ \/\/\ \  / __`\ /' _ `\  /',__\ 
+  // /\ \L\ \ \ \L\ \ \ \_\ \ \/\ \L\ \/\ \/\ \/\__, `\
+  // \ \____/\ \ ,__/\ \__\\ \_\ \____/\ \_\ \_\/\____/
+  //  \/___/  \ \ \/  \/__/ \/_/\/___/  \/_/\/_/\/___/ 
+  //           \ \_\                                   
+  //            \/_/    
+
     if (args.Length() == 2)
     {
       if (args[1]->IsObject())
       {
         // you must be passing options...
         // it must be an object
+
 
         Handle<Object> opt = Handle<Object>::Cast(args[1]);
 
@@ -105,6 +128,20 @@ Handle<Value> executeArray(const Arguments& args) {
             // the chained option must be bool
             Handle<Value> _chained = opt->Get(String::New("chained"));
             Chained = cv::CastFromJS<bool>(_chained);
+
+          } else {
+            // chained is not bool, throw error
+            ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for chained option")));
+            return scope.Close(Undefined());
+          }
+        }
+
+        if (opt->Has(String::New("verbose"))) {
+          // you passed verbose option
+          if ((opt->Get(String::New("verbose"))->IsBoolean())){
+            // the verbose option must be bool
+            Handle<Value> _verbose = opt->Get(String::New("verbose"));
+            Verbose = cv::CastFromJS<bool>(_verbose);
 
           } else {
             // chained is not bool, throw error
@@ -126,12 +163,90 @@ Handle<Value> executeArray(const Arguments& args) {
             return scope.Close(Undefined());
           }
         }
+
+        if (opt->Has(String::New("exitSuccess"))) {
+          //you passed exitSuccess option
+
+          if ((opt->Get(String::New("exitSuccess"))->IsArray())){
+            // the exitSuccess option must be Array
+            Handle<Array>  _exitSuccess = Handle<Array>::Cast(opt->Get(String::New("exitSuccess")));
+            for (int i = 0; i < _exitSuccess->Length(); i++) {
+
+            // get the corresponding array element
+            v8::Local<v8::Value> _e = _exitSuccess->Get(i);
+            int __e = cv::CastFromJS<int>(_e);
+            exitSuccess.insert(__e);
+            }
+          } else {
+            // exitSuccess option isn't Array, throw error
+            ThrowException(Exception::TypeError(String::New("Wrong arguments, need Array for exitSuccess option")));
+            return scope.Close(Undefined());
+          }
+        }
+
+        if (opt->Has(String::New("prettyPrint"))) {
+          //you passed prettyPrint option
+
+          if ((opt->Get(String::New("prettyPrint"))->IsBoolean())){
+            // the prettyPrint option must be bool
+            Handle<Value> _prettyPrint = opt->Get(String::New("prettyPrint"));
+            prettyPrint = cv::CastFromJS<bool>(_prettyPrint);
+            
+            
+          } else {
+            // prettyPrint option isn't bool, throw error
+            ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for prettyPrint option")));
+            return scope.Close(Undefined());
+          }
+        }
+
       } 
       else {
         // options must be object, if not, throw error
         ThrowException(Exception::TypeError(String::New("Wrong arguments, need Object for options")));
         return scope.Close(Undefined());
       }
+    }
+    // Default Options that are handled after options are handled
+    if (prettyPrint == true)
+    {
+          RESET     =   "\033[0m";
+          GREEN     =   "\033[0;32m";
+          CYAN      =   "\033[0;36m";
+          YELLOW    =   "\033[0;33m";
+          RED       =   "\033[0;31m";
+
+          TICK      =   "\u2714";
+          BULLET    =   "\uffed";
+          CROSS     =   "\u2717";
+          TRIANGLE  =   "\u25B2";
+
+          LINE      =   "----------------------------------------";
+          UNDER     =   "\033[4m";
+          BOLD      =   "\033[1m";
+    }
+    else {
+
+          RESET     =   "";
+          GREEN     =   "";
+          CYAN      =   "";
+          YELLOW    =   "";
+          RED       =   "";
+
+          TICK      =   "\u2714";
+          BULLET    =   "\uffed";
+          CROSS     =   "\u2717";
+          TRIANGLE  =   "\u25B2";
+
+          LINE      =   "----------------------------------------";
+          UNDER     =   "";
+          BOLD      =   "";
+    }
+
+    //default exitSuccess
+    if (exitSuccess.empty())
+    {
+      exitSuccess.insert(0);
     }
  
       Handle<Array> array = Handle<Array>::Cast(args[0]);
@@ -176,7 +291,7 @@ Handle<Value> executeArray(const Arguments& args) {
         // This will be echoed before runing command
         running 
           << std::endl << CYAN 
-          << BLET << " " << UNDER 
+          << BULLET << " " << UNDER 
           << "Running Command" 
           << RESET << CYAN 
           << "\t"
@@ -190,14 +305,17 @@ Handle<Value> executeArray(const Arguments& args) {
         fatal_error 
           << std::endl
           << RED
-          << CRSS << " "
+          << CROSS << " "
           << "Stopped at after running command #" << i+1 << ". Fatal Error when running the command."
           << RESET
           << std::endl
           << std::endl;
 
       //debug before cmd is run
-      std::cout << running.str();
+      if (Verbose)
+      {
+        std::cout << running.str();
+      }
 
       //Run the command
       // exitcode = execxi.run(cmd);
@@ -207,7 +325,11 @@ Handle<Value> executeArray(const Arguments& args) {
 
       if(!(in = popen(cmd.c_str(), "r"))){
         // fatal error running command
-        std::cout << fatal_error.str();
+        if (Verbose)
+        {
+          std::cout << fatal_error.str();
+        }
+        
       }
 
 
@@ -219,7 +341,10 @@ Handle<Value> executeArray(const Arguments& args) {
       
 
       while(fgets(buff, sizeof(buff), in)!=NULL){
-        std::cout << buff;
+        if (Verbose)
+        {
+          std::cout << buff;
+        }
         if (returnOutput) {
           //clear output
           cmd_output.str(std::string());
@@ -274,7 +399,9 @@ Handle<Value> executeArray(const Arguments& args) {
         // currently we have this many failed (exited with not 0)
         int _failed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("failed")));
 
-        if (exitcode == 0)
+        // checking if the exitcode is a success 
+        // (default success code is 0, it can be supplied by user too)
+        if (exitSuccess.find(exitcode) != exitSuccess.end())
         {
           // our command was exited with 0, so lets add that to passed 
           result_array->Set(cv::CastToJS("passed"), cv::CastToJS(_passed+1));
@@ -291,7 +418,10 @@ Handle<Value> executeArray(const Arguments& args) {
             << RESET
             << std::endl
             << std::endl;
-          std::cout << exit_msg.str();
+          if (Verbose)
+          {
+            std::cout << exit_msg.str();
+          }
 
         }
         else {
@@ -310,14 +440,17 @@ Handle<Value> executeArray(const Arguments& args) {
             exit_msg 
               << std::endl
               << RED
-              << CRSS << " "
+              << CROSS << " "
               << "Command " << current.str() << " exited with: " << exitcode << ". "
               << "Stopped at after running command #" << i+1 << "."
               << std::endl << LINE
               << RESET
               << std::endl
               << std::endl;
-            std::cout << exit_msg.str();
+            if (Verbose)
+            {
+              std::cout << exit_msg.str();
+            }
             //we don't want to continue anymore 
             return scope.Close(result_array);
           } else {
@@ -330,7 +463,9 @@ Handle<Value> executeArray(const Arguments& args) {
               << RESET
               << std::endl
               << std::endl;
-            std::cout << exit_msg.str();
+            if (Verbose){
+              std::cout << exit_msg.str();
+            }
           }
         }
 
@@ -360,28 +495,59 @@ Handle<Value> executeArray(const Arguments& args) {
     << std::endl
 
     << std::endl
-    << "  " << BLET << " Ran " << _ran << "/" << max << " commands."
+    << "  " << BULLET << " Ran " << _ran << "/" << max << " commands."
     << std::endl << std::endl
     << LINE
-    << std::endl
+    << std::endl;
+  if (_passed > 0)
+  {
+    summary
+      << std::endl
+      << GREEN
+      << "  " << TICK << " Passed: " << _passed << " commands:"
+      << std::endl
+      << "  " << TICK << " " << passed_ones.str()
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
+  else {
+    summary
+      << std::endl
+      << RED
+      << "  " << CROSS << " Passed: " << _passed << " commands :("
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
 
-    << std::endl
-    << GREEN
-    << "  " << TICK << " Passed: " << _passed << " commands:"
-    << std::endl
-    << "  " << TICK << " " << passed_ones.str()
-    << std::endl << std::endl
-    << LINE
-    << std::endl
 
-    << std::endl
-    << RED
-    << "  " << CRSS << " Failed: " << _failed << " commands:"
-    << std::endl
-    << "  " << CRSS << " " << failed_ones.str()
-    << std::endl << std::endl
-    << LINE
-    << std::endl
+  if (_failed > 0)
+  {
+    summary
+
+      << std::endl
+      << RED
+      << "  " << CROSS << " Failed: " << _failed << " commands:"
+      << std::endl
+      << "  " << CROSS << " " << failed_ones.str()
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
+  else {
+    summary
+
+      << std::endl
+      << GREEN
+      << "  " << TICK << " Failed: " << _failed << " commands! :')"
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
+
+
+  summary
 
     << CYAN << BOLD
     << std::endl
@@ -392,7 +558,10 @@ Handle<Value> executeArray(const Arguments& args) {
 
     << RESET
     << std::endl;
-  std::cout << summary.str();
+  if (Verbose)
+  {
+    std::cout << summary.str();
+  }
   return scope.Close(result_array);
 }
  

@@ -66,6 +66,8 @@ execxi.executeArray(<Array> Commands[, <Object> Options] )
 [ "ls", "ls -lart"] //as many as you want (I suppose)
 ```
 
+- Second argument is Options, see [Options](#options).
+
 - In the end it outputs a summary to the console, stating how many commands are run, how many passed, how many failed and which ones passed and failed.
 
 - Returns an array of results:
@@ -114,7 +116,19 @@ If the output's line is more than the maximum bytes, then the rest of the charac
 
   `returnOutput` is also `true` by default. This is what returns the output in an array, parsing them line by line. I supply with this option because sometimes you might run a command that only returns server's IP address or sometimes you can run a command that just outputs very long lines and a very long text. I added the ability to opt out so that when unnecessary you might set it to false.
 
+- `exitSuccess`: `Array(int[,int, ...])`
 
+  `exitSuccess` is an array that contains a collection of error codes that you deem to be a successful exit. All programs use different exit codes, sometimes they give a warning and exit with `2`. In situations like those, I find myself wanting to allow exiting with `2` for that group of commands to be treated as if command was successfully run. This allows the chained commands to continue. 
+
+  By default only `0` exit codes are known to be successful runs. If you supply with `exitSuccess` option you will be overriding that. So, by your definition; a program that fails to run can still be a success.
+
+- `prettyPrint`: `bool`
+
+  `prettyPrint` is `true` by default. This gives the console output its color. Sometimes I find that I need to redirect output into a log file, and don't want the ANSI escape characters such as `\033[0;32m` to appear in the log. This will give you a colorless output in console messages.
+
+- `verbose`: `bool`
+
+  `verbose` is `true` by default. It is used for outputting the command's output as well as giving information on the status (such as "Running Command [1/3]"). There may be times when you just want to quietly utilize the shell command's output. Setting this to `false` will save you from headaches. I usually turn it off when I'm conducting tests, because if I don't, it's a real mess. 
 
 
 ## Example
