@@ -53,7 +53,7 @@ using namespace v8;
 
 Handle<Value> executeArray(const Arguments& args) {
     HandleScope scope;
-    // OPTIONS
+    // DEFAULT OPTIONS
     /////////////////////
     
     //
@@ -83,7 +83,8 @@ Handle<Value> executeArray(const Arguments& args) {
       LINE, UNDER, BOLD;
 
     //
-    // verbose, output the command output and information
+    // verbose (bool)
+    //   Output the command output and information
     bool Verbose = true; 
 
 
