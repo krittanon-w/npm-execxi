@@ -233,10 +233,10 @@ Handle<Value> executeArray(const Arguments& args) {
           YELLOW    =   "";
           RED       =   "";
 
-          TICK      =   "";
-          BULLET    =   "";
-          CROSS     =   "";
-          TRIANGLE  =   "";
+          TICK      =   "\u2714";
+          BULLET    =   "\uffed";
+          CROSS     =   "\u2717";
+          TRIANGLE  =   "\u25B2";
 
           LINE      =   "----------------------------------------";
           UNDER     =   "";

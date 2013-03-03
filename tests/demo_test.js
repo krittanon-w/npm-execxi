@@ -51,3 +51,17 @@ exports.optionExitSuccess2 = function(test){
     test.equal(0, res4.failed);
     test.done();
 };
+
+var res4 = execxi.executeArray(exit_codes, {"chained": true, "exitSuccess":[0,1,2], "prettyPrint":false});
+exports.visualTest_PrettyPrint = function(test){
+    // console.log("\nChecking if Chained option works.");
+    test.equal(0, res4.failed);
+    test.done();
+};
+
+var res4 = execxi.executeArray(exit_codes, {"chained": true, "exitSuccess":[0,1,2], "verbose":false});
+exports.visualTest_Verbose = function(test){
+    // console.log("\nChecking if Chained option works.");
+    test.equal(0, res4.failed);
+    test.done();
+};
