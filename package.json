@@ -22,18 +22,22 @@
       "type": "git",
       "url": "git://github.com/aponxi/npm-execxi.git"
     }
-  ], 
-  "scripts" : {
-      "preinstall" : "make", 
-      "preuninstall" : "make clean",
-      "test" : "make test",
-      "gentest" : "make gentest"
-    },
-  "main" : "build/Release/execxi.node",
+  ],
+  "scripts": {
+    "preinstall": "make",
+    "preuninstall": "make clean",
+    "test": "make test",
+    "gentest": "make gentest"
+  },
+  "main": "build/Release/execxi.node",
   "licenses": [
     {
       "name": "MIT",
       "url": "http://aponxi.mit-license.org/"
     }
-  ]
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.1.2"
+  }
 }

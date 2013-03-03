@@ -50,11 +50,6 @@
 namespace cv = cvv8;
 using namespace v8;
 
-std::string 
-  RESET, GREEN, CYAN, YELLOW, RED,
-  TICK, BULLET, CROSS, TRIANGLE,
-  LINE, UNDER, BOLD;
-
 
 
 Handle<Value> executeArray(const Arguments& args) {
@@ -82,6 +77,13 @@ Handle<Value> executeArray(const Arguments& args) {
     //
     // default values for prettyPrint
     bool prettyPrint = true;
+    // these are formatting strings
+    std::string 
+      RESET, GREEN, CYAN, YELLOW, RED,
+      TICK, BULLET, CROSS, TRIANGLE,
+      LINE, UNDER, BOLD;
+
+
 
 
    // String _usage = "\nUsage: \n\texecuteArray(<Array>Commands, <Object>Options)";
@@ -163,10 +165,6 @@ Handle<Value> executeArray(const Arguments& args) {
             return scope.Close(Undefined());
           }
         }
-        else {
-          // default success is 0
-          exitSuccess.insert(0);
-        }
 
         if (opt->Has(String::New("prettyPrint"))) {
           //you passed prettyPrint option
@@ -225,6 +223,12 @@ Handle<Value> executeArray(const Arguments& args) {
           LINE      =   "----------------------------------------";
           UNDER     =   "";
           BOLD      =   "";
+    }
+
+    //default exitSuccess
+    if (exitSuccess.empty())
+    {
+      exitSuccess.insert(0);
     }
  
       Handle<Array> array = Handle<Array>::Cast(args[0]);
