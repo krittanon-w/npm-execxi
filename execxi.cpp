@@ -83,6 +83,10 @@ Handle<Value> executeArray(const Arguments& args) {
       TICK, BULLET, CROSS, TRIANGLE,
       LINE, UNDER, BOLD;
 
+    //
+    // verbose, output the command output and information
+    bool Verbose = true; 
+
 
 
 
@@ -124,6 +128,20 @@ Handle<Value> executeArray(const Arguments& args) {
             // the chained option must be bool
             Handle<Value> _chained = opt->Get(String::New("chained"));
             Chained = cv::CastFromJS<bool>(_chained);
+
+          } else {
+            // chained is not bool, throw error
+            ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for chained option")));
+            return scope.Close(Undefined());
+          }
+        }
+
+        if (opt->Has(String::New("verbose"))) {
+          // you passed verbose option
+          if ((opt->Get(String::New("verbose"))->IsBoolean())){
+            // the verbose option must be bool
+            Handle<Value> _verbose = opt->Get(String::New("verbose"));
+            Verbose = cv::CastFromJS<bool>(_verbose);
 
           } else {
             // chained is not bool, throw error
@@ -294,7 +312,10 @@ Handle<Value> executeArray(const Arguments& args) {
           << std::endl;
 
       //debug before cmd is run
-      std::cout << running.str();
+      if (Verbose)
+      {
+        std::cout << running.str();
+      }
 
       //Run the command
       // exitcode = execxi.run(cmd);
@@ -304,7 +325,11 @@ Handle<Value> executeArray(const Arguments& args) {
 
       if(!(in = popen(cmd.c_str(), "r"))){
         // fatal error running command
-        std::cout << fatal_error.str();
+        if (Verbose)
+        {
+          std::cout << fatal_error.str();
+        }
+        
       }
 
 
@@ -316,7 +341,10 @@ Handle<Value> executeArray(const Arguments& args) {
       
 
       while(fgets(buff, sizeof(buff), in)!=NULL){
-        std::cout << buff;
+        if (Verbose)
+        {
+          std::cout << buff;
+        }
         if (returnOutput) {
           //clear output
           cmd_output.str(std::string());
@@ -390,7 +418,10 @@ Handle<Value> executeArray(const Arguments& args) {
             << RESET
             << std::endl
             << std::endl;
-          std::cout << exit_msg.str();
+          if (Verbose)
+          {
+            std::cout << exit_msg.str();
+          }
 
         }
         else {
@@ -416,7 +447,10 @@ Handle<Value> executeArray(const Arguments& args) {
               << RESET
               << std::endl
               << std::endl;
-            std::cout << exit_msg.str();
+            if (Verbose)
+            {
+              std::cout << exit_msg.str();
+            }
             //we don't want to continue anymore 
             return scope.Close(result_array);
           } else {
@@ -429,7 +463,9 @@ Handle<Value> executeArray(const Arguments& args) {
               << RESET
               << std::endl
               << std::endl;
-            std::cout << exit_msg.str();
+            if (Verbose){
+              std::cout << exit_msg.str();
+            }
           }
         }
 
@@ -491,7 +527,10 @@ Handle<Value> executeArray(const Arguments& args) {
 
     << RESET
     << std::endl;
-  std::cout << summary.str();
+  if (Verbose)
+  {
+    std::cout << summary.str();
+  }
   return scope.Close(result_array);
 }
  
