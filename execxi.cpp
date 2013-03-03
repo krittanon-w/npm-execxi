@@ -46,7 +46,6 @@
 #include <string>
 #include <sstream>
 #include <set>
-// #include "./execxi.h"
 namespace cv = cvv8;
 using namespace v8;
 
@@ -498,25 +497,56 @@ Handle<Value> executeArray(const Arguments& args) {
     << "  " << BULLET << " Ran " << _ran << "/" << max << " commands."
     << std::endl << std::endl
     << LINE
-    << std::endl
+    << std::endl;
+  if (_passed > 0)
+  {
+    summary
+      << std::endl
+      << GREEN
+      << "  " << TICK << " Passed: " << _passed << " commands:"
+      << std::endl
+      << "  " << TICK << " " << passed_ones.str()
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
+  else {
+    summary
+      << std::endl
+      << RED
+      << "  " << CROSS << " Passed: " << _passed << " commands :("
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
 
-    << std::endl
-    << GREEN
-    << "  " << TICK << " Passed: " << _passed << " commands:"
-    << std::endl
-    << "  " << TICK << " " << passed_ones.str()
-    << std::endl << std::endl
-    << LINE
-    << std::endl
 
-    << std::endl
-    << RED
-    << "  " << CROSS << " Failed: " << _failed << " commands:"
-    << std::endl
-    << "  " << CROSS << " " << failed_ones.str()
-    << std::endl << std::endl
-    << LINE
-    << std::endl
+  if (_failed > 0)
+  {
+    summary
+
+      << std::endl
+      << RED
+      << "  " << CROSS << " Failed: " << _failed << " commands:"
+      << std::endl
+      << "  " << CROSS << " " << failed_ones.str()
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
+  else {
+    summary
+
+      << std::endl
+      << GREEN
+      << "  " << TICK << " Failed: " << _failed << " commands! :')"
+      << std::endl << std::endl
+      << LINE
+      << std::endl;
+  }
+
+
+  summary
 
     << CYAN << BOLD
     << std::endl
