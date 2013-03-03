@@ -5,4 +5,5 @@ module.exports = (grunt) ->
     nodeunit: 
       all: ['tests/*_test.js']
   )
-  grunt.registerTask('default', ["nodeunit"]);
+  grunt.registerTask('test', ["nodeunit"]);
+  grunt.registerTask('default', ["test"]);
