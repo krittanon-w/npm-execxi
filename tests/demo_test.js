@@ -39,9 +39,15 @@ exports.optionChained = function(test){
     test.done();
 };
 
-var res3 = execxi.executeArray(commands, {"chained": true, "exitSuccess":[0,1], "verbose":false});
+var res3 = execxi.executeArray(exit_codes, {"chained": true, "exitSuccess":[0,1], "verbose":false});
 exports.optionExitSuccess = function(test){
     // console.log("\nChecking if Chained option works.");
-    test.equal(6, res3.ran);
+    test.equal(1, res3.failed);
+    test.done();
+};
+var res4 = execxi.executeArray(exit_codes, {"chained": true, "exitSuccess":[0,1,2], "verbose":false});
+exports.optionExitSuccess2 = function(test){
+    // console.log("\nChecking if Chained option works.");
+    test.equal(0, res4.failed);
     test.done();
 };
