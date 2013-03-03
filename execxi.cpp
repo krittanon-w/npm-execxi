@@ -206,7 +206,7 @@ Handle<Value> executeArray(const Arguments& args) {
         return scope.Close(Undefined());
       }
     }
-    // Default Options
+    // Default Options that are handled after options are handled
     if (prettyPrint == true)
     {
           RESET     =   "\033[0m";
