@@ -34,8 +34,8 @@
 */
 
 
-#include <node/node.h>
-#include <v8.h>
+#include "include/node/node.h"
+#include "include/node/v8.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstdio>
