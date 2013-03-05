@@ -20,11 +20,15 @@
 
 
 
-# execXI
+# ExecXI
 
 ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !
 
 Returns exit code of all the commands, and outputs of all the commands. (Be careful of the memory usage.)
+
+### Projects that are using this extension:
+
+- [Grunt-WXI-Shell](https://github.com/aponxi/grunt-wxi-shell) Grunt Plugin: Executing Shell commands synchronously with Grunt! 
 
 ## Jump to Section
 
@@ -34,6 +38,7 @@ Returns exit code of all the commands, and outputs of all the commands. (Be care
 * [Options](#options)
 * [Example](#example)
 * [Example Output to Console](#output)
+* [Building and Testing](#building-and-testing)
 * [Legal Stuff](#legal-mambo-jambo)
 
 ## Installation
@@ -484,6 +489,26 @@ Lets only run this one if the previous one had a 100% pass
 Not running this: previous one did not have a 100% pass
 
 ```
+## Building and Testing
+[Back To Top](#)
+
+I have packaged a `Makefile`, `Gruntfile` for building and testing, and `npm` scripts point to those.
+
+Available commands are:
+
+- `make` (Aliases: `npm run-script preinstall`) : 
+  Compiles the C++ code into node extension.
+
+- `make clean` (Aliases: `npm run-script preuninstall`):
+  Removes the `build` directory.
+
+- `node test` (Aliases: `make test`) : 
+  This is for visual testing rather than unit testing. 
+
+- `grunt test`  (Aliases: `grunt`; `npm test`): 
+  This is for unit testing. 
+
+
 
 ## Legal mambo jambo
 
