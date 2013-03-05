@@ -57,13 +57,19 @@
              \/_/                              
 </code></pre>
 
-<h1>execXI</h1>
+<h1>ExecXI <a href="https://travis-ci.org/aponxi/npm-execxi"><img src="https://travis-ci.org/aponxi/npm-execxi.png?branch=master" alt="Build Status"></a>
+</h1>
 
 <p>ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !</p>
 
 <p>Returns exit code of all the commands, and outputs of all the commands. (Be careful of the memory usage.)</p>
 
-<h2>Jump to Section</h2>
+<h3>Projects that are using this extension:</h3>
+
+<ul>
+<li>
+<a href="https://github.com/aponxi/grunt-wxi-shell">Grunt-WXI-Shell</a> Grunt Plugin: Executing Shell commands synchronously with Grunt! </li>
+</ul><h2>Jump to Section</h2>
 
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -71,10 +77,11 @@
 <li><a href="#options">Options</a></li>
 <li><a href="#example">Example</a></li>
 <li><a href="#output">Example Output to Console</a></li>
+<li><a href="#building-and-testing">Building and Testing</a></li>
 <li><a href="#legal-mambo-jambo">Legal Stuff</a></li>
 </ul><h2>Installation</h2>
 
-<p><a href="#">Back To Top</a></p>
+<p><a href="#execxi-">Back To Top</a></p>
 
 <ul>
 <li>via npm</li>
@@ -89,7 +96,7 @@ make
 
 <h2>Usage</h2>
 
-<p><a href="#">Back To Top</a></p>
+<p><a href="#execxi-">Back To Top</a></p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">execxi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"execxi"</span><span class="p">);</span>
 <span class="nx">execxi</span><span class="p">.</span><span class="nx">executeArray</span><span class="p">(</span><span class="o">&lt;</span><span class="nb">Array</span><span class="o">&gt;</span> <span class="nx">Commands</span><span class="p">[,</span> <span class="o">&lt;</span><span class="nb">Object</span><span class="o">&gt;</span> <span class="nx">Options</span><span class="p">]</span> <span class="p">)</span>
@@ -139,7 +146,7 @@ make
 
 <h2>Options</h2>
 
-<p><a href="#">Back To Top</a></p>
+<p><a href="#execxi-">Back To Top</a></p>
 
 <ul>
 <li>
@@ -171,7 +178,7 @@ make
 </li>
 </ul><h2>Example</h2>
 
-<p><a href="#">Back To Top</a></p>
+<p><a href="#execxi-">Back To Top</a></p>
 
 <div class="highlight"><pre><span class="c1">//require the extension/module/wtv</span>
 <span class="kd">var</span> <span class="nx">execxi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"execxi"</span><span class="p">);</span>
@@ -223,7 +230,7 @@ make
 
 <h2>Output</h2>
 
-<p><a href="#">Back To Top</a></p>
+<p><a href="#execxi-">Back To Top</a></p>
 
 <p>That example outputs something long like this:</p>
 
@@ -522,9 +529,26 @@ Not running this: previous one did not have a 100% pass
 
 </code></pre>
 
-<h2>Legal mambo jambo</h2>
+<h2>Building and Testing</h2>
 
-<p><a href="#">Back To Top</a></p>
+<p><a href="#execxi-">Back To Top</a></p>
+
+<p>I have packaged a <code>Makefile</code>, <code>Gruntfile</code> for building and testing, and <code>npm</code> scripts point to those.</p>
+
+<p>Available commands are:</p>
+
+<ul>
+<li><p><code>make</code> (Aliases: <code>npm run-script preinstall</code>) : 
+Compiles the C++ code into node extension.</p></li>
+<li><p><code>make clean</code> (Aliases: <code>npm run-script preuninstall</code>):
+Removes the <code>build</code> directory.</p></li>
+<li><p><code>node test</code> (Aliases: <code>make test</code>) : 
+This is for visual testing rather than unit testing. </p></li>
+<li><p><code>grunt test</code>  (Aliases: <code>grunt</code>; <code>npm test</code>): 
+This is for unit testing. </p></li>
+</ul><h2>Legal mambo jambo</h2>
+
+<p><a href="#execxi-">Back To Top</a></p>
 
 <p>If you would mention WeaponXI in your source code or under credits or something it would mean the world to me!</p>
 
