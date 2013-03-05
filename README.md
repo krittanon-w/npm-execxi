@@ -20,7 +20,7 @@
 
 
 
-# ExecXI
+# ExecXI [![Build Status](https://travis-ci.org/aponxi/npm-execxi.png?branch=master)](https://travis-ci.org/aponxi/npm-execxi)
 
 ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !
 
