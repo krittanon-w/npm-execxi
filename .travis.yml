@@ -4,4 +4,5 @@ node_js:
 before_install:
  - npm install -g grunt-cli
 after_script:
- - after_command_1
+ - node test
+
