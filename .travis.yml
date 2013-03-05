@@ -1,5 +1,10 @@
 language: node_js
 node_js:
   - 0.8
+<<<<<<< HEAD
 before_install:
  - npm install -g grunt-cli
+=======
+after_script:
+  - node test
+>>>>>>> release/1.1.37
