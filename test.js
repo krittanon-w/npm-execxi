@@ -22,11 +22,20 @@ var tests_to_run = Array();
 tests_to_run = tests_to_run.concat(regular, exit_codes,non_existent, long_text);
 
 // Right now we have array of 8 commands to run
-
+console.log("\n--------------------------");
+console.log("- Running Visual Tests:  -");
+console.log("--------------------------\n");
 // lets run in chained mode to observe
+console.log("- Running these commands:");
+console.log("\n");
+console.dir(tests_to_run);
+console.log("\n");
+console.log("- Running commands with Chained mode on:");
 var res = execxi.executeArray(tests_to_run);
 // lets see what it returns as a result array
 console.dir(res);
+console.log("\n");
+console.log("- Running commands with Chained mode off:");
 
 // lets run without chained mode on, and also observe
 var res = execxi.executeArray(tests_to_run, {"chained": false});
