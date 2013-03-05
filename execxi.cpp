@@ -40,7 +40,7 @@
 #include <stdlib.h>
 #include <cstdio>
 
-#include <cvv8/convert.hpp>
+#include "include/cvv8/convert.hpp"
 
 #include <iostream>
 #include <string>
