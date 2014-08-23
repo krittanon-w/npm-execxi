@@ -18,12 +18,12 @@
       "web": "http://www.weaponxi.com"
     }
   ],
-  "repositories": [
+  "repository": 
     {
       "type": "git",
       "url": "git://github.com/aponxi/npm-execxi.git"
     }
-  ],
+  ,
   "scripts": {
     "preinstall": "make",
     "preuninstall": "make clean",
