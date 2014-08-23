@@ -22,9 +22,32 @@
 
 # ExecXI [![Build Status](https://travis-ci.org/aponxi/npm-execxi.png?branch=master)](https://travis-ci.org/aponxi/npm-execxi)
 
+## Version 1.3 Supports Node 0.8, 0.9, 0.10!
+
 ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !
 
 Returns exit code of all the commands, and outputs of all the commands. (Be careful of the memory usage.)
+
+### From March 2013 to Aug 2014
+
+This extension was built on Node.js 0.8 and back then there was a very useful library called [V8 Juice](https://code.google.com/p/v8-juice/). It was their type conversion functions that allowed this program to interpret JavaScript values as C++. The C++ part would then take care of the functionality and return a converted JavaScript array, also by utilizing that library.
+
+That V8 library was discontinued due to the major changes after this Node.js version. 
+
+Therefore, execxi seized to function at Node.js 0.9++ as well. 
+
+The biggest challange in restoring this project was that I had a lot trouble finding detailed documentations, examples or function reference on this subject. The problem was to interpret passed arguments from JavaScript and do something with them in C++. As I am documenting my findings, I might as well post them here in case someone is trying to write a Node.js Addon and looking for examples.
+
+
+- [Sample Addon For Node 0.8.18: jltrem.com](http://jltrem.com/blog/2013/02/06/simple-example-node-js-addon-to-glue-c-to-javascript/)
+- [v8 header is the best source: The Doxygen of Google V8 Framework](http://izs.me/v8-docs/namespacev8.html)
+- [StackOverflow has specific answers: Search by type like how to convert String](http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring)
+- [StackOverflow: Arrays— there is iteration too!](http://stackoverflow.com/questions/23123406/v8-array-of-objects)
+- [The joyent/node source for salvaging examples like array usage](https://github.com/joyent/node/blob/2944e03/src/node_child_process.cc#L92-104)
+- [My question at StackOverflow before I figured out some specific conversions used in this project](http://stackoverflow.com/questions/25451792/type-casting-between-v8-and-javascript-variable-types-when-writing-a-node-js-c)
+- [This repository has examples: rvagg/node-addon-examples](https://github.com/rvagg/node-addon-examples)
+
+To summarize, the clues for writing a Node.js Addon is mostly in the V8 and Ndoe source code. I feel that setting up a good development environment that recognizes v8 functions in the IDE and helps with suggestions would be optimal. Without it, this 1.3 patch was like swimming in the dark; and my light was [this project called aponxi/npm-addon-tests](https://github.com/aponxi/npm-addon-tests) I've started to "Read header files at node and v8 — Find out functions — Try them and compile — Test and Repeat". With a little bit of luck this patch was ready to release after a day or two.
 
 ### Projects that are using this extension:
 
@@ -39,6 +62,7 @@ Returns exit code of all the commands, and outputs of all the commands. (Be care
 * [Example](#example)
 * [Example Output to Console](#output)
 * [Building and Testing](#building-and-testing)
+* [Change Log](#change-log)
 * [Legal Stuff](#legal-mambo-jambo)
 
 ## Installation
