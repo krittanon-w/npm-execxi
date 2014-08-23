@@ -47,47 +47,7 @@
 #include <set>
 using namespace v8;
 
-//write functions for typecasting here
-//there are functions that want to interperate JS Types:
-// - bool
-// - integer
 
-
-//JS.bool// Chained = cv::CastFromJS<bool>(_chained);
-//JS.bool// Verbose = cv::CastFromJS<bool>(_verbose);
-//JS.bool// returnOutput = cv::CastFromJS<bool>(_returnOutput);
-
-//JS.int// int __e = cv::CastFromJS<int>(_e);
-
-//JS.bool// prettyPrint = cv::CastFromJS<bool>(_prettyPrint);
-
-// max, passed, failed and ran are counts of how many commands ran and 
-// how many have failed
-
-//JS.array// result_array->Set(cv::CastToJS("max"), cv::CastToJS(max));
-//JS.array// result_array->Set(cv::CastToJS("ran"), cv::CastToJS(0));
-//JS.array// result_array->Set(cv::CastToJS("failed"), cv::CastToJS(0));
-//JS.array// result_array->Set(cv::CastToJS("passed"), cv::CastToJS(0));
-//JS.array// result_array->Set(cv::CastToJS(0), True());
-
-//JS.string// std::string cmd = cv::CastFromJS<std::string>(element);
-
-//JS.array// output_array->Set(cv::CastToJS(line_n), cv::CastToJS(str));
-//JS.array// result_array->Set(cv::CastToJS("ran"), cv::CastToJS(i+1));
-//JS.array// this_command->Set(cv::CastToJS("output"), output_array);
-//JS.array// this_command->Set(cv::CastToJS("exit_code"), cv::CastToJS(exitcode));
-//JS.array// result_array->Set(cv::CastToJS(i+1), this_command);
-
-//JS.int// int _passed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("passed")));
-//JS.int// int _failed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("failed")));
-
-//JS.array// result_array->Set(cv::CastToJS("passed"), cv::CastToJS(_passed+1));
-//JS.array// result_array->Set(cv::CastToJS("failed"), cv::CastToJS(_failed+1));
-//JS.array// result_array->Set(cv::CastToJS(0), False());
-
-//JS.int//int _passed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("passed")));
-//JS.int//int _failed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("failed")));
-//JS.int//int _ran = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("ran")));
 
 int ConvertNumberValue2Int (Local<Value> num){
   int res = -1;
