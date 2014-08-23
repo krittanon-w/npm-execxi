@@ -34,22 +34,71 @@
 */
 
 
-#include "include/node/node.h"
-#include "include/node/v8.h"
+#include <node.h>
+#include <v8.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstdio>
 
-#include "include/cvv8/convert.hpp"
 
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <set>
-namespace cv = cvv8;
 using namespace v8;
 
+//write functions for typecasting here
+//there are functions that want to interperate JS Types:
+// - bool
+// - integer
 
+
+//JS.bool// Chained = cv::CastFromJS<bool>(_chained);
+//JS.bool// Verbose = cv::CastFromJS<bool>(_verbose);
+//JS.bool// returnOutput = cv::CastFromJS<bool>(_returnOutput);
+
+//JS.int// int __e = cv::CastFromJS<int>(_e);
+
+//JS.bool// prettyPrint = cv::CastFromJS<bool>(_prettyPrint);
+
+// max, passed, failed and ran are counts of how many commands ran and 
+// how many have failed
+
+//JS.array// result_array->Set(cv::CastToJS("max"), cv::CastToJS(max));
+//JS.array// result_array->Set(cv::CastToJS("ran"), cv::CastToJS(0));
+//JS.array// result_array->Set(cv::CastToJS("failed"), cv::CastToJS(0));
+//JS.array// result_array->Set(cv::CastToJS("passed"), cv::CastToJS(0));
+//JS.array// result_array->Set(cv::CastToJS(0), True());
+
+//JS.string// std::string cmd = cv::CastFromJS<std::string>(element);
+
+//JS.array// output_array->Set(cv::CastToJS(line_n), cv::CastToJS(str));
+//JS.array// result_array->Set(cv::CastToJS("ran"), cv::CastToJS(i+1));
+//JS.array// this_command->Set(cv::CastToJS("output"), output_array);
+//JS.array// this_command->Set(cv::CastToJS("exit_code"), cv::CastToJS(exitcode));
+//JS.array// result_array->Set(cv::CastToJS(i+1), this_command);
+
+//JS.int// int _passed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("passed")));
+//JS.int// int _failed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("failed")));
+
+//JS.array// result_array->Set(cv::CastToJS("passed"), cv::CastToJS(_passed+1));
+//JS.array// result_array->Set(cv::CastToJS("failed"), cv::CastToJS(_failed+1));
+//JS.array// result_array->Set(cv::CastToJS(0), False());
+
+//JS.int//int _passed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("passed")));
+//JS.int//int _failed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("failed")));
+//JS.int//int _ran = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("ran")));
+
+int ConvertNumberValue2Int (Local<Value> num){
+  int res = -1;
+  if(!num->IsNumber())
+    return res;
+  else{
+    res = num->NumberValue();
+    return (int)res;
+  }
+
+}
 
 Handle<Value> executeArray(const Arguments& args) {
     HandleScope scope;
@@ -91,27 +140,30 @@ Handle<Value> executeArray(const Arguments& args) {
 
 
    // String _usage = "\nUsage: \n\texecuteArray(<Array>Commands, <Object>Options)";
+
+    // We allow only 1 or 2 arguments. 
     if (args.Length() != 1 && args.Length() != 2) {
     
         ThrowException(Exception::TypeError( String::New("Wrong number of arguments") ) );
         return scope.Close(Undefined());
     }
  
+    // First argument is the list of commands and it needs to be array.
     if (!args[0]->IsArray()) {
         ThrowException(Exception::TypeError(String::New("Wrong arguments, need Array for Commands")));
         return scope.Close(Undefined());
     }
-
-  //               __                                  
-  //              /\ \__  __                           
-  //   ___   _____\ \ ,_\/\_\    ___     ___     ____  
-  //  / __`\/\ '__`\ \ \/\/\ \  / __`\ /' _ `\  /',__\ 
-  // /\ \L\ \ \ \L\ \ \ \_\ \ \/\ \L\ \/\ \/\ \/\__, `\
-  // \ \____/\ \ ,__/\ \__\\ \_\ \____/\ \_\ \_\/\____/
-  //  \/___/  \ \ \/  \/__/ \/_/\/___/  \/_/\/_/\/___/ 
-  //           \ \_\                                   
-  //            \/_/    
-
+/*
+                    __                                  
+                   /\ \__  __                           
+        ___   _____\ \ ,_\/\_\    ___     ___     ____  
+       / __`\/\ '__`\ \ \/\/\ \  / __`\ /' _ `\  /',__\ 
+      /\ \L\ \ \ \L\ \ \ \_\ \ \/\ \L\ \/\ \/\ \/\__, `\
+      \ \____/\ \ ,__/\ \__\\ \_\ \____/\ \_\ \_\/\____/
+       \/___/  \ \ \/  \/__/ \/_/\/___/  \/_/\/_/\/___/ 
+                \ \_\                                   
+                 \/_/    
+*/
     if (args.Length() == 2)
     {
       if (args[1]->IsObject())
@@ -122,12 +174,16 @@ Handle<Value> executeArray(const Arguments& args) {
 
         Handle<Object> opt = Handle<Object>::Cast(args[1]);
 
+
+        //Handling Options
+
+        // The `chained` option:
         if (opt->Has(String::New("chained"))) {
           // you passed chained option
           if ((opt->Get(String::New("chained"))->IsBoolean())){
             // the chained option must be bool
             Handle<Value> _chained = opt->Get(String::New("chained"));
-            Chained = cv::CastFromJS<bool>(_chained);
+            Chained = !(_chained->IsFalse());
 
           } else {
             // chained is not bool, throw error
@@ -141,7 +197,7 @@ Handle<Value> executeArray(const Arguments& args) {
           if ((opt->Get(String::New("verbose"))->IsBoolean())){
             // the verbose option must be bool
             Handle<Value> _verbose = opt->Get(String::New("verbose"));
-            Verbose = cv::CastFromJS<bool>(_verbose);
+            Verbose = !_verbose->IsFalse();
 
           } else {
             // chained is not bool, throw error
@@ -156,7 +212,7 @@ Handle<Value> executeArray(const Arguments& args) {
           if ((opt->Get(String::New("returnOutput"))->IsBoolean())){
             // the returnOutput option must be bool
             Handle<Value> _returnOutput = opt->Get(String::New("returnOutput"));
-            returnOutput = cv::CastFromJS<bool>(_returnOutput);
+            returnOutput = !_returnOutput->IsFalse();
           } else {
             // returnOutput option isn't bool, throw error
             ThrowException(Exception::TypeError(String::New("Wrong arguments, need boolean for returnOutput option")));
@@ -174,7 +230,7 @@ Handle<Value> executeArray(const Arguments& args) {
 
             // get the corresponding array element
             v8::Local<v8::Value> _e = _exitSuccess->Get(i);
-            int __e = cv::CastFromJS<int>(_e);
+            int __e = (_e->NumberValue());
             exitSuccess.insert(__e);
             }
           } else {
@@ -190,7 +246,7 @@ Handle<Value> executeArray(const Arguments& args) {
           if ((opt->Get(String::New("prettyPrint"))->IsBoolean())){
             // the prettyPrint option must be bool
             Handle<Value> _prettyPrint = opt->Get(String::New("prettyPrint"));
-            prettyPrint = cv::CastFromJS<bool>(_prettyPrint);
+            prettyPrint = !_prettyPrint->IsFalse();
             
             
           } else {
@@ -255,11 +311,12 @@ Handle<Value> executeArray(const Arguments& args) {
 
       v8::Handle<v8::Array> result_array = v8::Array::New();
       //lets populate result array
-      result_array->Set(cv::CastToJS("max"), cv::CastToJS(max));
-      result_array->Set(cv::CastToJS("ran"), cv::CastToJS(0));
-      result_array->Set(cv::CastToJS("failed"), cv::CastToJS(0));
-      result_array->Set(cv::CastToJS("passed"), cv::CastToJS(0));
-      result_array->Set(cv::CastToJS(0), True());
+
+      result_array->Set(String::NewSymbol("max"), Number::New(max));
+      result_array->Set(String::NewSymbol("ran"), Number::New(0));
+      result_array->Set(String::NewSymbol("failed"), Number::New(0));
+      result_array->Set(String::NewSymbol("passed"), Number::New(0));
+      result_array->Set(Number::New(0), True());
     std::stringstream  summary, passed_ones, failed_ones;
     for (int i = 0; i < array->Length(); i++) {
 
@@ -267,7 +324,10 @@ Handle<Value> executeArray(const Arguments& args) {
       v8::Local<v8::Value> element = array->Get(i);
 
       //convert the array element to std::string
-      std::string cmd = cv::CastFromJS<std::string>(element);
+      Local<String> _cmd = element->ToString();
+      v8::String::Utf8Value param1(_cmd); 
+      std::string cmd = std::string(*param1);
+
        
       // execxi class
       // ExecXI execxi;
@@ -365,7 +425,7 @@ Handle<Value> executeArray(const Arguments& args) {
           //   << "/" << str.length() << "\n" << RESET;
 
           // store output line by line here
-          output_array->Set(cv::CastToJS(line_n), cv::CastToJS(str));
+          output_array->Set(Number::New(line_n), String::New(str.c_str()));
           line_n++;
         }
 
@@ -384,27 +444,29 @@ Handle<Value> executeArray(const Arguments& args) {
 
       //store result to array
         // ran this number of commands
-        result_array->Set(cv::CastToJS("ran"), cv::CastToJS(i+1));
+        result_array->Set(String::NewSymbol("ran"), Number::New(i+1));
         // this command's exit code and output
           v8::Handle<v8::Array> this_command = v8::Array::New();
           if (returnOutput) {
-            this_command->Set(cv::CastToJS("output"), output_array);
+            this_command->Set(String::NewSymbol("output"), output_array);
           }
-          this_command->Set(cv::CastToJS("exit_code"), cv::CastToJS(exitcode));
+          this_command->Set(String::NewSymbol("exit_code"), Number::New(exitcode));
 
         // store results
-        result_array->Set(cv::CastToJS(i+1), this_command);
+        // getting results
+          //ConvertNumberValue2Int(result_array->Get(String::NewSymbol("max")))
+        result_array->Set(Number::New(i+1), this_command);
         // currently we have this many passed (exited with 0)
-        int _passed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("passed")));
+        int _passed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("passed")));
         // currently we have this many failed (exited with not 0)
-        int _failed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("failed")));
+        int _failed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("failed")));
 
         // checking if the exitcode is a success 
         // (default success code is 0, it can be supplied by user too)
         if (exitSuccess.find(exitcode) != exitSuccess.end())
         {
           // our command was exited with 0, so lets add that to passed 
-          result_array->Set(cv::CastToJS("passed"), cv::CastToJS(_passed+1));
+          result_array->Set(String::NewSymbol("passed"), Number::New(_passed+1));
           // storing passed cmd to sstream
           passed_ones 
           << "#" << i+1 << " ";
@@ -426,9 +488,9 @@ Handle<Value> executeArray(const Arguments& args) {
         }
         else {
           //our command was exited with not 0, so lets add that to failed
-          result_array->Set(cv::CastToJS("failed"), cv::CastToJS(_failed+1));
+          result_array->Set(String::NewSymbol("failed"), Number::New(_failed+1));
           //setting [0] to false since we have failed at least once
-          result_array->Set(cv::CastToJS(0), False());
+          result_array->Set(Number::New(0), False());
 
           // storing failed cmd to sstream
           failed_ones 
@@ -474,11 +536,11 @@ Handle<Value> executeArray(const Arguments& args) {
        
     }
   // finally we have this many passed (exited with 0)
-  int _passed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("passed")));
+  int _passed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("passed")));
   // finally we have this many failed (exited with not 0)
-  int _failed = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("failed")));
+  int _failed = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("failed")));
   // finally we have this many commands run 
-  int _ran = cv::CastFromJS<int>(result_array->Get(cv::CastToJS("ran")));
+  int _ran = ConvertNumberValue2Int(result_array->Get(String::NewSymbol("ran")));
   summary
     << std::endl
     << std::endl

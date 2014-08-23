@@ -509,6 +509,12 @@ Available commands are:
   This is for unit testing. 
 
 
+## Change Log
+
+### V1.3.0 22/Aug/2014
+
+- Removed CVV8 (V8-Juice) and wrote alternative type casting solutions.
+- Fixed #14
 
 ## Legal mambo jambo
 
