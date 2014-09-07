@@ -4,9 +4,9 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <title>Npm-execxi by aponxi</title>
   </head>
@@ -53,9 +53,33 @@
 <a name="execxi-" class="anchor" href="#execxi-"><span class="octicon octicon-link"></span></a>ExecXI <a href="https://travis-ci.org/aponxi/npm-execxi"><img src="https://travis-ci.org/aponxi/npm-execxi.png?branch=master" alt="Build Status"></a>
 </h1>
 
+<h2>
+<a name="version-13-supports-node-08-09-010" class="anchor" href="#version-13-supports-node-08-09-010"><span class="octicon octicon-link"></span></a>Version 1.3 Supports Node 0.8, 0.9, 0.10!</h2>
+
 <p>ExecXI is a node extension written in C++ to execute shell commands one by one, outputting the command's output to the console in real-time. Optional chained, and unchained ways are present; meaning that you can choose to stop the script after a command fails (chained), or you can continue as if nothing has happened !</p>
 
 <p>Returns exit code of all the commands, and outputs of all the commands. (Be careful of the memory usage.)</p>
+
+<h3>
+<a name="from-march-2013-to-aug-2014" class="anchor" href="#from-march-2013-to-aug-2014"><span class="octicon octicon-link"></span></a>From March 2013 to Aug 2014</h3>
+
+<p>This extension was built on Node.js 0.8 and back then there was a very useful library called <a href="https://code.google.com/p/v8-juice/">V8 Juice</a>. It was their type conversion functions that allowed this program to interpret JavaScript values as C++. The C++ part would then take care of the functionality and return a converted JavaScript array, also by utilizing that library.</p>
+
+<p>That V8 library was discontinued due to the major changes after this Node.js version. </p>
+
+<p>Therefore, execxi seized to function at Node.js 0.9++ as well. </p>
+
+<p>The biggest challange in restoring this project was that I had a lot trouble finding detailed documentations, examples or function reference on this subject. The problem was to interpret passed arguments from JavaScript and do something with them in C++. As I am documenting my findings, I might as well post them here in case someone is trying to write a Node.js Addon and looking for examples.</p>
+
+<ul>
+<li><a href="http://jltrem.com/blog/2013/02/06/simple-example-node-js-addon-to-glue-c-to-javascript/">Sample Addon For Node 0.8.18: jltrem.com</a></li>
+<li><a href="http://izs.me/v8-docs/namespacev8.html">v8 header is the best source: The Doxygen of Google V8 Framework</a></li>
+<li><a href="http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring">StackOverflow has specific answers: Search by type like how to convert String</a></li>
+<li><a href="http://stackoverflow.com/questions/23123406/v8-array-of-objects">StackOverflow: Arrays— there is iteration too!</a></li>
+<li><a href="https://github.com/joyent/node/blob/2944e03/src/node_child_process.cc#L92-104">The joyent/node source for salvaging examples like array usage</a></li>
+<li><a href="http://stackoverflow.com/questions/25451792/type-casting-between-v8-and-javascript-variable-types-when-writing-a-node-js-c">My question at StackOverflow before I figured out some specific conversions used in this project</a></li>
+<li><a href="https://github.com/rvagg/node-addon-examples">This repository has examples: rvagg/node-addon-examples</a></li>
+</ul><p>To summarize, the clues for writing a Node.js Addon is mostly in the V8 and Ndoe source code. I feel that setting up a good development environment that recognizes v8 functions in the IDE and helps with suggestions would be optimal. Without it, this 1.3 patch was like swimming in the dark; and my light was <a href="https://github.com/aponxi/npm-addon-tests">this project called aponxi/npm-addon-tests</a> I've started to "Read header files at node and v8 — Find out functions — Try them and compile — Test and Repeat". With a little bit of luck this patch was ready to release after a day or two.</p>
 
 <h3>
 <a name="projects-that-are-using-this-extension" class="anchor" href="#projects-that-are-using-this-extension"><span class="octicon octicon-link"></span></a>Projects that are using this extension:</h3>
@@ -73,6 +97,7 @@
 <li><a href="#example">Example</a></li>
 <li><a href="#output">Example Output to Console</a></li>
 <li><a href="#building-and-testing">Building and Testing</a></li>
+<li><a href="#change-log">Change Log</a></li>
 <li><a href="#legal-mambo-jambo">Legal Stuff</a></li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -95,20 +120,20 @@ make
 
 <p><a href="#execxi-">Back To Top</a></p>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">execxi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"execxi"</span><span class="p">);</span>
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">execxi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"execxi"</span><span class="p">);</span>
 <span class="nx">execxi</span><span class="p">.</span><span class="nx">executeArray</span><span class="p">(</span><span class="o">&lt;</span><span class="nb">Array</span><span class="o">&gt;</span> <span class="nx">Commands</span><span class="p">[,</span> <span class="o">&lt;</span><span class="nb">Object</span><span class="o">&gt;</span> <span class="nx">Options</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 
 <ul>
 <li>You just supply with one or two arguments. First is the array of commands to run, such as:</li>
-</ul><div class="highlight"><pre><span class="p">[</span> <span class="s2">"ls"</span><span class="p">,</span> <span class="s2">"ls -lart"</span><span class="p">]</span> <span class="c1">//as many as you want (I suppose)</span>
+</ul><div class="highlight highlight-js"><pre><span class="p">[</span> <span class="s2">"ls"</span><span class="p">,</span> <span class="s2">"ls -lart"</span><span class="p">]</span> <span class="c1">//as many as you want (I suppose)</span>
 </pre></div>
 
 <ul>
 <li><p>Second argument is Options, see <a href="#options">Options</a>.</p></li>
 <li><p>In the end it outputs a summary to the console, stating how many commands are run, how many passed, how many failed and which ones passed and failed.</p></li>
 <li><p>Returns an array of results:</p></li>
-</ul><div class="highlight"><pre><span class="p">[</span>
+</ul><div class="highlight highlight-js"><pre><span class="p">[</span>
     <span class="mi">0</span><span class="o">:</span> <span class="nx">bool</span><span class="p">,</span> <span class="c1">// true if all commands exited with code 0, false if one or more exited with other than 0.</span>
 
     <span class="c1">// here will be information about the commands you have run</span>
@@ -179,7 +204,7 @@ make
 
 <p><a href="#execxi-">Back To Top</a></p>
 
-<div class="highlight"><pre><span class="c1">//require the extension/module/wtv</span>
+<div class="highlight highlight-js"><pre><span class="c1">//require the extension/module/wtv</span>
 <span class="kd">var</span> <span class="nx">execxi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"execxi"</span><span class="p">);</span>
 
 <span class="c1">// I just defined some commands here</span>
@@ -547,6 +572,15 @@ Removes the <code>build</code> directory.</p></li>
 This is for visual testing rather than unit testing. </p></li>
 <li><p><code>grunt test</code>  (Aliases: <code>grunt</code>; <code>npm test</code>): 
 This is for unit testing. </p></li>
+</ul><h2>
+<a name="change-log" class="anchor" href="#change-log"><span class="octicon octicon-link"></span></a>Change Log</h2>
+
+<h3>
+<a name="v130-22aug2014" class="anchor" href="#v130-22aug2014"><span class="octicon octicon-link"></span></a>V1.3.0 22/Aug/2014</h3>
+
+<ul>
+<li>Removed CVV8 (V8-Juice) and wrote alternative type casting solutions.</li>
+<li>Fixed #14</li>
 </ul><h2>
 <a name="legal-mambo-jambo" class="anchor" href="#legal-mambo-jambo"><span class="octicon octicon-link"></span></a>Legal mambo jambo</h2>
 
