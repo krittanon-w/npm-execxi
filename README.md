@@ -36,7 +36,7 @@ That V8 library was discontinued due to the major changes after this Node.js ver
 
 Therefore, execxi seized to function at Node.js 0.9++ as well. 
 
-The biggest challange in restoring this project was that I had a lot trouble finding detailed documentations, examples or function reference on this subject. The problem was to interpret passed arguments from JavaScript and do something with them in C++. As I am documenting my findings, I might as well post them here in case someone is trying to write a Node.js Addon and looking for examples.
+The biggest challenge in restoring this project was that I had a lot trouble finding detailed documentations, examples or function reference on this subject. The problem was to interpret passed arguments from JavaScript and do something with them in C++. As I am documenting my findings, I might as well post them here in case someone is trying to write a Node.js Addon and looking for examples.
 
 
 - [Sample Addon For Node 0.8.18: jltrem.com](http://jltrem.com/blog/2013/02/06/simple-example-node-js-addon-to-glue-c-to-javascript/)
